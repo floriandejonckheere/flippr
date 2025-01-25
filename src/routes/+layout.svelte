@@ -1,11 +1,14 @@
 <script lang="ts">
   import '../app.css';
-  let { children } = $props();
+  import Header from '$lib/components/Header.svelte';
+  import type { PageServerData } from './$types';
+
+  let { children, data }: { children(): any; data: PageServerData } = $props();
 </script>
 
 <div class="flex h-full w-full items-center justify-center bg-red-50 dark:bg-gray-600">
   <div
-    class="relative h-full h-full w-full rounded-[2.5rem] border-gray-800 md:h-[800px] md:w-[400px] md:border-[14px] dark:border-gray-800"
+    class="relative h-full w-full rounded-[2.5rem] border-gray-800 md:h-[800px] md:w-[400px] md:border-[14px] dark:border-gray-800"
   >
     <div
       class="absolute left-1/2 top-0 hidden h-[18px] w-[148px] -translate-x-1/2 rounded-b-[1rem] bg-gray-800 md:inline"
@@ -28,6 +31,8 @@
       <div class="flex h-full w-full flex-col">
         <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">
           <div class="flex flex-col gap-4 p-6">
+            <Header user={data?.user}>Title</Header>
+
             {@render children()}
           </div>
         </div>
