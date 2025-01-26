@@ -9,7 +9,7 @@
   export let data;
 </script>
 
-<div class="grid grid-cols-1 gap-2">
+<div class="grid grid-cols-2 gap-2">
   {#each data.cardAndCardTypes as cardAndCardType}
     <a href="/app/cards/{cardAndCardType.card.id}">
       <div

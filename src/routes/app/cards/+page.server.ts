@@ -14,7 +14,7 @@ export const load: PageServerLoad = async (event: { locals: { user: User } }) =>
     .from(cards)
     .innerJoin(cardTypes, eq(cards.cardTypeId, cardTypes.id))
     .where(eq(cards.userId, event.locals.user.id))
-    .orderBy(asc(cards.createdAt));
+    .orderBy(asc(cardTypes.name));
 
   return {
     cardAndCardTypes
