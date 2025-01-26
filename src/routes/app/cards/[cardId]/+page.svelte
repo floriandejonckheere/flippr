@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Barcode from 'svelte-barcode';
+
   import { titleStore } from '$lib/state';
 
   titleStore.set('Card');
@@ -15,9 +17,23 @@
     {data.cardAndCardType.cardType.name}
   </div>
 
-  <div class="flex h-2/3 w-full items-center justify-center rounded-md bg-white p-4 text-black">
-    <div class="text-lg">
-      {data.cardAndCardType.card.value}
-    </div>
+  <div class="flex h-2/3 w-full items-center justify-center rounded-md bg-white text-black">
+    <Barcode
+      value={data.cardAndCardType.card.value}
+      elementTag={'svg'}
+      options={{
+        format: data.cardAndCardType.cardType.format,
+        width: 2,
+        height: 100,
+        margin: 0,
+        text: '',
+        textAlign: 'center',
+        textPosition: 'bottom',
+        textMargin: 4,
+        fontSize: 20,
+        background: '#ffffff',
+        lineColor: '#000000',
+      }}
+    />
   </div>
 </div>
