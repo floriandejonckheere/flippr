@@ -5,7 +5,8 @@ export const user = pgTable('user', {
   email: text('email').notNull().unique(),
   name: text('name').notNull(),
   username: text('username').notNull().unique(),
-  passwordHash: text('password_hash').notNull()
+  passwordHash: text('password_hash').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
 export const session = pgTable('session', {
@@ -14,7 +15,8 @@ export const session = pgTable('session', {
   userId: uuid('user_id')
     .notNull()
     .references(() => user.id),
-  expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
+  expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
 export type Session = typeof session.$inferSelect;
