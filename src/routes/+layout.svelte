@@ -8,8 +8,6 @@
 
   let { children, data }: { children(): any; data: PageServerData } = $props();
 
-  console.log('Hello from layout page');
-
   titleStore.set('Flippr');
 </script>
 
@@ -37,7 +35,7 @@
     >
       <div class="flex h-full w-full flex-col">
         <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">
-          <div class="flex flex-col gap-4 p-6">
+          <div class="flex flex-col gap-16 p-4">
             <Header user={data?.user} />
 
             {@render children()}
