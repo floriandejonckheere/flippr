@@ -22,7 +22,8 @@ export const session = pgTable('session', {
 export const cardType = pgTable('card_type', {
   id: uuid('id').defaultRandom().primaryKey(),
   name: text('name').notNull().unique(),
-  color: text('color').notNull(),
+  backgroundColor: text('background_color').notNull(),
+  textColor: text('text_color').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 

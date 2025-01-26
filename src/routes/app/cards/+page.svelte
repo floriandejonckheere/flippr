@@ -11,7 +11,7 @@
     <a href="/app/cards/{cardAndCardType.card.id}">
       <div
         class="flex h-[6em] w-full items-center justify-center rounded-md shadow-md"
-        style="background-color: {cardAndCardType.cardType.color}; color: {cardAndCardType.cardType.color};"
+        style="background-color: {cardAndCardType.cardType.backgroundColor}; color: {cardAndCardType.cardType.textColor};"
       >
         <h2>{cardAndCardType.cardType.name}</h2>
       </div>
