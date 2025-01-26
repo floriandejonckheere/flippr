@@ -14,7 +14,11 @@
     "lint": "prettier --check . && eslint .",
     "db:start": "docker compose up",
     "db:push": "drizzle-kit push",
+    "db:drop": "docker compose exec postgres psql -U postgres -c 'DROP DATABASE flippr;'",
+    "db:create": "docker compose exec postgres psql -U postgres -c 'CREATE DATABASE flippr;'",
     "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx ./src/lib/server/db/seeds.ts",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed",
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
@@ -52,6 +56,7 @@
     "@steeze-ui/svelte-icon": "^1.6.2",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.4",
+    "drizzle-seed": "^0.3.0",
     "pg": "^8.13.1",
     "postgres": "^3.4.5",
     "uuid": "^11.0.5"
