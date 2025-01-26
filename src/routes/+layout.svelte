@@ -1,14 +1,7 @@
 <script lang="ts">
   import '../app.css';
 
-  import Header from '$lib/components/Header.svelte';
-  import { titleStore } from '$lib/state';
-
-  import type { PageServerData } from './$types';
-
-  let { children, data }: { children(): any; data: PageServerData } = $props();
-
-  titleStore.set('Flippr');
+  let { children }: { children(): any } = $props();
 </script>
 
 <div class="flex h-full w-full items-center justify-center bg-red-50 dark:bg-gray-600">
@@ -36,8 +29,6 @@
       <div class="flex h-full w-full flex-col">
         <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">
           <div class="flex flex-col gap-16 p-4">
-            <Header user={data?.user} />
-
             {@render children()}
           </div>
         </div>
