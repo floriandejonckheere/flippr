@@ -89,11 +89,6 @@
         type="submit"
         class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
       >
-        <!--{mutation.isPending ? (-->
-        <!--            <Spinner color="w-5 h-5 text-white" />-->
-        <!--        ) : (-->
-        <!--            'Sign up'-->
-        <!--        )}-->
         Sign up
       </button>
     </div>
