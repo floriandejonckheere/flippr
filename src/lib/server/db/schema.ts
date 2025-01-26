@@ -28,8 +28,12 @@ export const cardType = pgTable('card_type', {
 
 export const card = pgTable('card', {
   id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id').notNull().references(() => user.id),
-  cardTypeId: uuid('card_type_id').notNull().references(() => cardType.id),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => user.id),
+  cardTypeId: uuid('card_type_id')
+    .notNull()
+    .references(() => cardType.id),
   value: text('value').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
