@@ -24,14 +24,10 @@
       class="absolute -end-[17px] top-[142px] hidden h-[64px] w-[3px] rounded-e-lg bg-gray-800 md:inline dark:bg-gray-800"
     ></div>
     <div
-      class="scrollbar-hide h-full overflow-auto bg-white p-4 md:h-[774px] md:w-[373px] md:rounded-[1.5rem] md:pt-8 dark:bg-red-950"
+      class="scrollbar-hide h-full overflow-auto bg-white md:h-[774px] md:w-[373px] md:rounded-[1.5rem] md:pt-8 dark:bg-red-950"
     >
       <div class="flex h-full w-full flex-col">
-        <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">
-          <div class="flex flex-col gap-16 p-4">
-            {@render children()}
-          </div>
-        </div>
+        {@render children()}
       </div>
     </div>
   </div>

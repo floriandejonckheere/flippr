@@ -16,7 +16,7 @@
 
   <div class="flex flex-col gap-2">
     <div class="text-sm">
-      Welcome {user?.name}
+      Welcome, {user?.name}!
     </div>
     <h1 class="inline-block text-2xl font-semibold">
       {$titleStore}

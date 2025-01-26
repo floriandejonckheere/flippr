@@ -4,7 +4,7 @@
   import type { PageServerData } from './$types';
 
   import { titleStore } from '$lib/state';
-  import Header from "$lib/components/Header.svelte";
+  import Header from '$lib/components/Header.svelte';
 
   let { data }: { data: PageServerData } = $props();
 
@@ -14,9 +14,5 @@
 <Header user={data?.user} />
 
 <form method="post" use:enhance>
-  <button
-    class="w-full p-4 bg-red-800 rounded-2xl shadow-md text-center text-white"
-  >
-    Sign out
-  </button>
+  <button class="w-full rounded-2xl bg-red-800 p-4 text-center text-white shadow-md"> Sign out </button>
 </form>
