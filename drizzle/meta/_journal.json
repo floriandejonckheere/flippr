@@ -8,6 +8,13 @@
       "when": 1737901983632,
       "tag": "0000_create_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737906218168,
+      "tag": "0001_add_format_to_card_types",
+      "breakpoints": true
     }
   ]
 }

@@ -26,6 +26,7 @@ const cardTypesData: { [key: string]: CardType } = {
   delhaize: {
     id: uuidv4(),
     name: 'Delhaize',
+    format: 'UPC',
     backgroundColor: '#C8102E',
     textColor: '#FFFFFF',
     createdAt: new Date(Date.now())
@@ -33,6 +34,7 @@ const cardTypesData: { [key: string]: CardType } = {
   colruyt: {
     id: uuidv4(),
     name: 'Colruyt',
+    format: 'CODE128',
     backgroundColor: '#E8762A',
     textColor: '#FFFFFF',
     createdAt: new Date(Date.now())
@@ -40,6 +42,7 @@ const cardTypesData: { [key: string]: CardType } = {
   carrefour: {
     id: uuidv4(),
     name: 'Carrefour',
+    format: 'EAN13',
     backgroundColor: '#0058A6',
     textColor: '#FFFFFF',
     createdAt: new Date(Date.now())
@@ -47,6 +50,7 @@ const cardTypesData: { [key: string]: CardType } = {
   aldi: {
     id: uuidv4(),
     name: 'Aldi',
+    format: 'CODE39',
     backgroundColor: '#0094D1',
     textColor: '#FFFFFF',
     createdAt: new Date(Date.now())
@@ -54,6 +58,7 @@ const cardTypesData: { [key: string]: CardType } = {
   lidl: {
     id: uuidv4(),
     name: 'Lidl',
+    format: 'EAN8',
     backgroundColor: '#224EA2',
     textColor: '#FFFFFF',
     createdAt: new Date(Date.now())
@@ -85,21 +90,21 @@ const cardData: { [key: string]: { [key: string]: Card } } = {
       id: uuidv4(),
       userId: usersData.admin.id,
       cardTypeId: cardTypesData.delhaize.id,
-      value: '1234 5678 9012 3456',
+      value: '123456789999',
       createdAt: new Date(Date.now())
     },
     colruyt: {
       id: uuidv4(),
       userId: usersData.admin.id,
       cardTypeId: cardTypesData.colruyt.id,
-      value: '1234 5678 9012 3456',
+      value: '12345678',
       createdAt: new Date(Date.now())
     },
     carrefour: {
       id: uuidv4(),
       userId: usersData.admin.id,
       cardTypeId: cardTypesData.carrefour.id,
-      value: '1234 5678 9012 3456',
+      value: '5901234123457',
       createdAt: new Date(Date.now())
     }
   },
@@ -108,21 +113,21 @@ const cardData: { [key: string]: { [key: string]: Card } } = {
       id: uuidv4(),
       userId: usersData.user.id,
       cardTypeId: cardTypesData.delhaize.id,
-      value: '1234 5678 9012 3456',
+      value: '123456789990',
       createdAt: new Date(Date.now())
     },
     aldi: {
       id: uuidv4(),
       userId: usersData.user.id,
       cardTypeId: cardTypesData.aldi.id,
-      value: '1234 5678 9012 3456',
+      value: 'ABCDEFG',
       createdAt: new Date(Date.now())
     },
     lidl: {
       id: uuidv4(),
       userId: usersData.user.id,
       cardTypeId: cardTypesData.lidl.id,
-      value: '1234 5678 9012 3456',
+      value: '96385074',
       createdAt: new Date(Date.now())
     }
   }
