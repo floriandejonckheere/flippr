@@ -26,7 +26,7 @@
   <div class="flex-1"></div>
 
   <div class="float-right">
-    <a href="/auth/account">
+    <a href="/app/settings">
       <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-red-800 font-semibold text-white">
         {user?.name?.charAt(0)?.toUpperCase()}
       </span>

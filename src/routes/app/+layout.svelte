@@ -1,6 +1,4 @@
 <script lang="ts">
-  import '../../app.css';
-
   import type { PageServerData } from '../$types';
 
   import { titleStore } from '$lib/state';
