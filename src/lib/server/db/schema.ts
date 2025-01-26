@@ -1,6 +1,6 @@
 import { pgTable, text, uuid, timestamp } from 'drizzle-orm/pg-core';
 
-export const user = pgTable('user', {
+export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
   email: text('email').notNull().unique(),
   name: text('name').notNull(),
@@ -9,17 +9,17 @@ export const user = pgTable('user', {
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
-export const session = pgTable('session', {
+export const sessions = pgTable('sessions', {
   id: uuid('id').defaultRandom().primaryKey(),
   token: text('token').notNull().unique(),
   userId: uuid('user_id')
     .notNull()
-    .references(() => user.id),
+    .references(() => users.id),
   expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull(),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
-export const cardType = pgTable('card_type', {
+export const cardTypes = pgTable('card_types', {
   id: uuid('id').defaultRandom().primaryKey(),
   name: text('name').notNull().unique(),
   backgroundColor: text('background_color').notNull(),
@@ -27,19 +27,19 @@ export const cardType = pgTable('card_type', {
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
-export const card = pgTable('card', {
+export const cards = pgTable('cards', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id')
     .notNull()
-    .references(() => user.id),
+    .references(() => users.id),
   cardTypeId: uuid('card_type_id')
     .notNull()
-    .references(() => cardType.id),
+    .references(() => cardTypes.id),
   value: text('value').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
-export type User = typeof user.$inferSelect;
-export type Session = typeof session.$inferSelect;
-export type CardType = typeof cardType.$inferSelect;
-export type Card = typeof card.$inferSelect;
+export type User = typeof users.$inferSelect;
+export type Session = typeof sessions.$inferSelect;
+export type CardType = typeof cardTypes.$inferSelect;
+export type Card = typeof cards.$inferSelect;
