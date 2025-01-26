@@ -19,6 +19,22 @@ export const session = pgTable('session', {
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
-export type Session = typeof session.$inferSelect;
+export const cardType = pgTable('card_type', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  name: text('name').notNull().unique(),
+  color: text('color').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
+});
+
+export const card = pgTable('card', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id').notNull().references(() => user.id),
+  cardTypeId: uuid('card_type_id').notNull().references(() => cardType.id),
+  value: text('value').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
+});
 
 export type User = typeof user.$inferSelect;
+export type Session = typeof session.$inferSelect;
+export type CardType = typeof cardType.$inferSelect;
+export type Card = typeof card.$inferSelect;
