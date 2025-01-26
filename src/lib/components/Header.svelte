@@ -2,7 +2,9 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { ArrowLeft } from '@steeze-ui/heroicons';
 
-  const { user, children, back = undefined } = $props();
+  import { titleStore } from '$lib/state';
+
+  const { user, back = undefined } = $props();
 </script>
 
 <div class="flex items-center gap-4 text-red-800">
@@ -17,7 +19,7 @@
       Welcome {user?.name}
     </div>
     <h1 class="inline-block text-2xl font-semibold">
-      {@render children()}
+      {$titleStore}
     </h1>
   </div>
 
