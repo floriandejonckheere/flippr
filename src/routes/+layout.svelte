@@ -8,6 +8,8 @@
 
   let { children, data }: { children(): any; data: PageServerData } = $props();
 
+  console.log('Hello from layout page');
+
   titleStore.set('Flippr');
 </script>
 

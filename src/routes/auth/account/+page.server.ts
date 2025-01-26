@@ -1,11 +1,22 @@
+import * as auth from '$lib/server/auth';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
-import { redirectIfNotSignedIn, signout } from '$lib/auth';
-
-export const load: PageServerLoad = async (event: { locals: { user: any } }) => {
-  redirectIfNotSignedIn(event);
+export const load: PageServerLoad = async (event) => {
+  if (!event.locals.user) {
+    return redirect(302, '/auth/signin');
+  }
+  return { user: event.locals.user };
 };
 
 export const actions: Actions = {
-  default: signout
+  default: async (event) => {
+    if (!event.locals.session) {
+      return fail(401);
+    }
+    await auth.invalidateSession(event.locals.session.id);
+    auth.deleteSessionTokenCookie(event);
+
+    return redirect(302, '/auth/signin');
+  }
 };
