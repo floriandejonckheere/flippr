@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
 import { sha256 } from '@oslojs/crypto/sha2';
@@ -16,9 +18,10 @@ export function generateSessionToken() {
 }
 
 export async function createSession(token: string, userId: string) {
-  const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
+  const sessionId = uuidv4();
   const session: table.Session = {
     id: sessionId,
+    token,
     userId,
     expiresAt: new Date(Date.now() + DAY_IN_MS * 30)
   };
@@ -27,7 +30,6 @@ export async function createSession(token: string, userId: string) {
 }
 
 export async function validateSessionToken(token: string) {
-  const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
   const [result] = await db
     .select({
       // Adjust user table here to tweak returned data
@@ -41,7 +43,7 @@ export async function validateSessionToken(token: string) {
     })
     .from(table.session)
     .innerJoin(table.user, eq(table.session.userId, table.user.id))
-    .where(eq(table.session.id, sessionId));
+    .where(eq(table.session.token, token));
 
   if (!result) {
     return { session: null, user: null };

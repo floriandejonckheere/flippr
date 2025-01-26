@@ -1,7 +1,7 @@
-import { hash, verify } from '@node-rs/argon2';
-import { encodeBase32LowerCase } from '@oslojs/encoding';
+import { v4 as uuidv4 } from 'uuid';
+
+import { hash } from '@node-rs/argon2';
 import { fail, redirect } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
 import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
@@ -35,7 +35,7 @@ export const actions: Actions = {
       return fail(400, { message: 'Invalid password' });
     }
 
-    const userId = generateUserId();
+    const userId = uuidv4();
     const passwordHash = await hash(password, {
       // recommended minimum parameters
       memoryCost: 19456,
@@ -51,18 +51,13 @@ export const actions: Actions = {
       const session = await auth.createSession(sessionToken, userId);
       auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
     } catch (e) {
+      console.error(e);
+
       return fail(500, { message: 'An error has occurred' });
     }
     return redirect(302, '/app/cards');
   }
 };
-
-function generateUserId() {
-  // ID with 120 bits of entropy, or about the same as UUID v4.
-  const bytes = crypto.getRandomValues(new Uint8Array(15));
-  const id = encodeBase32LowerCase(bytes);
-  return id;
-}
 
 function validateEmail(email: unknown): email is string {
   return typeof email === 'string' && email.indexOf('@') !== -1 && email.length <= 255;
