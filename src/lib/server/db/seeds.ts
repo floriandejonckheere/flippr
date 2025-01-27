@@ -1,3 +1,7 @@
+import { fileURLToPath } from 'url'
+import { dirname, resolve } from 'path'
+import { readFileSync } from 'fs'
+
 import { hash } from '@node-rs/argon2';
 
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -22,45 +26,62 @@ const passwordHash = async (password: string) => {
   });
 };
 
+const modulePath = dirname(fileURLToPath(import.meta.url))
+
 const cardTypesData: { [key: string]: CardType } = {
   delhaize: {
     id: uuidv4(),
     name: 'Delhaize',
     format: 'UPC',
-    backgroundColor: '#C8102E',
+    backgroundColor: '#E22426',
     textColor: '#FFFFFF',
+    filename: 'delhaize.svg',
+    mimetype: 'image/svg+xml',
+    logo: readFileSync(resolve(modulePath, './seeds/delhaize.svg')),
     createdAt: new Date(Date.now())
   },
   colruyt: {
     id: uuidv4(),
     name: 'Colruyt',
     format: 'CODE128',
-    backgroundColor: '#E8762A',
+    backgroundColor: '#F26622',
     textColor: '#FFFFFF',
+    filename: 'colruyt.svg',
+    mimetype: 'image/svg+xml',
+    logo: readFileSync(resolve(modulePath, './seeds/colruyt.svg')),
     createdAt: new Date(Date.now())
   },
   carrefour: {
     id: uuidv4(),
     name: 'Carrefour',
     format: 'EAN13',
-    backgroundColor: '#0058A6',
+    backgroundColor: '#004E9F',
     textColor: '#FFFFFF',
+    filename: 'carrefour.svg',
+    mimetype: 'image/svg+xml',
+    logo: readFileSync(resolve(modulePath, './seeds/carrefour.svg')),
     createdAt: new Date(Date.now())
   },
   aldi: {
     id: uuidv4(),
     name: 'Aldi',
     format: 'CODE39',
-    backgroundColor: '#0094D1',
+    backgroundColor: '#1D3587',
     textColor: '#FFFFFF',
+    filename: 'aldi.svg',
+    mimetype: 'image/svg+xml',
+    logo: readFileSync(resolve(modulePath, './seeds/aldi.svg')),
     createdAt: new Date(Date.now())
   },
   lidl: {
     id: uuidv4(),
     name: 'Lidl',
     format: 'EAN8',
-    backgroundColor: '#224EA2',
+    backgroundColor: '#0050AA',
     textColor: '#FFFFFF',
+    filename: 'lidl.svg',
+    mimetype: 'image/svg+xml',
+    logo: readFileSync(resolve(modulePath, './seeds/lidl.svg')),
     createdAt: new Date(Date.now())
   }
 };
