@@ -13,11 +13,19 @@
   {#each data.cardAndCardTypes as cardAndCardType}
     <a href="/app/cards/{cardAndCardType.card.id}">
       <div
-        class="flex h-[6em] w-full items-center justify-center rounded-md shadow-md"
+        class="flex h-[6em] w-full items-center justify-center rounded-md shadow-md p-4"
         style="background-color: {cardAndCardType.cardType.backgroundColor}; color: {cardAndCardType.cardType
           .textColor};"
       >
-        <h2>{cardAndCardType.cardType.name}</h2>
+        {#if cardAndCardType.cardType.logo}
+          <img
+            src={`data:image/svg+xml;utf8,${encodeURIComponent(cardAndCardType.cardType.logo)}`}
+            alt={cardAndCardType.cardType.name}
+            class="max-h-[5em] max-w-[8em]"
+          />
+        {:else}
+          <h2>{cardAndCardType.cardType.name}</h2>
+        {/if}
       </div>
     </a>
   {/each}
