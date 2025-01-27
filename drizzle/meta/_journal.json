@@ -15,6 +15,13 @@
       "when": 1737906218168,
       "tag": "0001_add_format_to_card_types",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1737999883130,
+      "tag": "0002_add_logo_to_card_types",
+      "breakpoints": true
     }
   ]
 }

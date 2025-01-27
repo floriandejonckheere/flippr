@@ -1,4 +1,10 @@
-import { pgTable, text, uuid, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, text, uuid, timestamp, customType } from 'drizzle-orm/pg-core';
+
+const bytea = customType<{ data: Buffer; notNull: false; default: false }>({
+  dataType() {
+    return "bytea";
+  },
+});
 
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -25,6 +31,9 @@ export const cardTypes = pgTable('card_types', {
   format: text('format').notNull(),
   backgroundColor: text('background_color').notNull(),
   textColor: text('text_color').notNull(),
+  filename: text('filename'),
+  mimetype: text('mimetype'),
+  logo: bytea('logo'),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
