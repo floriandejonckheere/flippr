@@ -127,6 +127,20 @@ const cardData: { [key: string]: { [key: string]: Card } } = {
       cardTypeId: cardTypesData.carrefour.id,
       value: '5901234123457',
       createdAt: new Date(Date.now())
+    },
+    aldi: {
+      id: uuidv4(),
+      userId: usersData.admin.id,
+      cardTypeId: cardTypesData.aldi.id,
+      value: 'ABCDEFG',
+      createdAt: new Date(Date.now())
+    },
+    lidl: {
+      id: uuidv4(),
+      userId: usersData.admin.id,
+      cardTypeId: cardTypesData.lidl.id,
+      value: '96385074',
+      createdAt: new Date(Date.now())
     }
   },
   user: {
@@ -141,7 +155,7 @@ const cardData: { [key: string]: { [key: string]: Card } } = {
       id: uuidv4(),
       userId: usersData.user.id,
       cardTypeId: cardTypesData.aldi.id,
-      value: 'ABCDEFG',
+      value: 'GFEDCBA',
       createdAt: new Date(Date.now())
     },
     lidl: {
