@@ -93,6 +93,7 @@ const usersData: { [key: string]: User } = {
     name: 'Administrator',
     username: 'admin',
     passwordHash: await passwordHash('password'),
+    admin: true,
     createdAt: new Date(Date.now())
   },
   user: {
@@ -101,6 +102,7 @@ const usersData: { [key: string]: User } = {
     name: 'User',
     username: 'user',
     passwordHash: await passwordHash('password'),
+    admin: false,
     createdAt: new Date(Date.now())
   }
 };
