@@ -18,4 +18,4 @@
   </div>
 </div>
 
-<Footer />
+<Footer user={data?.user} />
