@@ -1,6 +1,6 @@
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { readFileSync } from 'fs';
 
 import { hash } from '@node-rs/argon2';
 
@@ -26,7 +26,7 @@ const passwordHash = async (password: string) => {
   });
 };
 
-const modulePath = dirname(fileURLToPath(import.meta.url))
+const modulePath = dirname(fileURLToPath(import.meta.url));
 
 const cardTypesData: { [key: string]: CardType } = {
   delhaize: {

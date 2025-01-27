@@ -13,7 +13,7 @@
   {#each data.cardAndCardTypes as cardAndCardType}
     <a href="/app/cards/{cardAndCardType.card.id}">
       <div
-        class="flex h-[6em] w-full items-center justify-center rounded-md shadow-md p-4"
+        class="flex h-[6em] w-full items-center justify-center rounded-md p-4 shadow-md"
         style="background-color: {cardAndCardType.cardType.backgroundColor}; color: {cardAndCardType.cardType
           .textColor};"
       >

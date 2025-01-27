@@ -2,8 +2,8 @@ import { pgTable, text, uuid, timestamp, customType } from 'drizzle-orm/pg-core'
 
 const bytea = customType<{ data: Buffer; notNull: false; default: false }>({
   dataType() {
-    return "bytea";
-  },
+    return 'bytea';
+  }
 });
 
 export const users = pgTable('users', {

@@ -32,7 +32,7 @@
         textMargin: 4,
         fontSize: 20,
         background: '#ffffff',
-        lineColor: '#000000',
+        lineColor: '#000000'
       }}
     />
   </div>
