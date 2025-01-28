@@ -43,7 +43,7 @@
           type="email"
           id="email"
           name="email"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-red-700 dark:bg-red-950 dark:text-red-400 dark:focus:ring-gray-600"
           required
         />
       </div>
@@ -56,7 +56,7 @@
           type="text"
           id="username"
           name="username"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-red-700 dark:bg-red-950 dark:text-red-400 dark:focus:ring-gray-600"
           required
         />
       </div>
@@ -69,7 +69,7 @@
           type="text"
           id="name"
           name="name"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-red-700 dark:bg-red-950 dark:text-red-400 dark:focus:ring-gray-600"
           required
         />
       </div>
@@ -80,7 +80,7 @@
           type="password"
           id="password"
           name="password"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-red-800 focus:ring-red-800 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-red-800 focus:ring-red-800 disabled:pointer-events-none disabled:opacity-50 dark:border-red-700 dark:bg-red-950 dark:text-red-400 dark:focus:ring-gray-600"
           required
         />
       </div>
