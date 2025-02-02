@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import { encodeBase64url, encodeHexLowerCase } from '@oslojs/encoding';
+import { encodeBase64url } from '@oslojs/encoding';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 
@@ -75,7 +75,8 @@ export async function invalidateSession(sessionId: string) {
 export function setSessionTokenCookie(event: RequestEvent, token: string, expiresAt: Date) {
   event.cookies.set(sessionCookieName, token, {
     expires: expiresAt,
-    path: '/'
+    path: '/',
+    secure: process.env.ENV !== 'development'
   });
 }
 
