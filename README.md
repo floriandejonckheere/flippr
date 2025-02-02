@@ -23,6 +23,11 @@ docker compose exec app pnpm run db:seed
 Open [localhost:5173](http://localhost:5173) in your browser.
 If you seeded the database, you can log in with `admin`/`password` or `user`/`password`.
 
+# Assets
+
+Uploaded images are stored at `static/uploads`.
+Serve this directory with a web server to make the images accessible.
+
 # License
 
 The software is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

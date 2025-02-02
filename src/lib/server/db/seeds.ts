@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 import { hash } from '@node-rs/argon2';
 
@@ -28,8 +28,6 @@ const passwordHash = async (password: string) => {
   });
 };
 
-const modulePath = dirname(fileURLToPath(import.meta.url));
-
 const cardTypesData: { [key: string]: CardType } = {
   delhaize: {
     id: uuidv4(),
@@ -37,9 +35,6 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'UPC',
     backgroundColor: '#E22426',
     textColor: '#FFFFFF',
-    filename: 'delhaize.webp',
-    mimetype: 'image/webp',
-    logo: await format(readFileSync(resolve(modulePath, './seeds/delhaize.svg'))),
     createdAt: new Date(Date.now())
   },
   colruyt: {
@@ -48,9 +43,6 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE128',
     backgroundColor: '#F26622',
     textColor: '#FFFFFF',
-    filename: 'colruyt.webp',
-    mimetype: 'image/webp',
-    logo: await format(readFileSync(resolve(modulePath, './seeds/colruyt.svg'))),
     createdAt: new Date(Date.now())
   },
   carrefour: {
@@ -59,9 +51,6 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN13',
     backgroundColor: '#004E9F',
     textColor: '#FFFFFF',
-    filename: 'carrefour.webp',
-    mimetype: 'image/webp',
-    logo: await format(readFileSync(resolve(modulePath, './seeds/carrefour.svg'))),
     createdAt: new Date(Date.now())
   },
   aldi: {
@@ -70,9 +59,6 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE39',
     backgroundColor: '#1D3587',
     textColor: '#FFFFFF',
-    filename: 'aldi.webp',
-    mimetype: 'image/webp',
-    logo: await format(readFileSync(resolve(modulePath, './seeds/aldi.svg'))),
     createdAt: new Date(Date.now())
   },
   lidl: {
@@ -81,9 +67,6 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN8',
     backgroundColor: '#0050AA',
     textColor: '#FFFFFF',
-    filename: 'lidl.webp',
-    mimetype: 'image/webp',
-    logo: await format(readFileSync(resolve(modulePath, './seeds/lidl.svg'))),
     createdAt: new Date(Date.now())
   }
 };
@@ -182,6 +165,16 @@ const main = async () => {
 
   console.log('Seeding card types...');
   await db.insert(cardTypes).values(Object.values(cardTypesData));
+
+  console.log('Uploading card type images...');
+  const modulePath = dirname(fileURLToPath(import.meta.url));
+  for (const cardType of Object.values(cardTypesData)) {
+    const buffer = await format(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
+
+    const path = resolve(modulePath, '../../../../static/uploads', `${cardType.name.toLowerCase()}.webp`);
+
+    writeFileSync(path, buffer);
+  }
 
   console.log('Seeding cards...');
   for (const key of Object.keys(cardData)) {
