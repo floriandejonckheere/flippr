@@ -17,9 +17,9 @@
         style="background-color: {cardAndCardType.cardType.backgroundColor}; color: {cardAndCardType.cardType
           .textColor};"
       >
-        {#if cardAndCardType.cardType.logo}
+        {#if cardAndCardType.cardType.image}
           <img
-            src={`data:${cardAndCardType.cardType.mimetype};utf8,${encodeURIComponent(cardAndCardType.cardType.logo)}`}
+            src={`/static/uploads/${cardAndCardType.cardType.image}`}
             alt={cardAndCardType.cardType.name}
             class="max-h-[5em] max-w-[8em]"
           />

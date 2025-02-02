@@ -16,7 +16,7 @@ docker compose up -d
 Seed the database (optional):
 
 ```
-docker compose exec app pnpm run db:migrate 
+docker compose exec app pnpm run db:migrate
 docker compose exec app pnpm run db:seed
 ```
 
