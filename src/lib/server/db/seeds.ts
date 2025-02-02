@@ -35,6 +35,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'UPC',
     backgroundColor: '#E22426',
     textColor: '#FFFFFF',
+    image: 'delhaize.webp',
     createdAt: new Date(Date.now())
   },
   colruyt: {
@@ -43,6 +44,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE128',
     backgroundColor: '#F26622',
     textColor: '#FFFFFF',
+    image: 'colruyt.webp',
     createdAt: new Date(Date.now())
   },
   carrefour: {
@@ -51,6 +53,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN13',
     backgroundColor: '#004E9F',
     textColor: '#FFFFFF',
+    image: 'carrefour.webp',
     createdAt: new Date(Date.now())
   },
   aldi: {
@@ -59,6 +62,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE39',
     backgroundColor: '#1D3587',
     textColor: '#FFFFFF',
+    image: 'aldi.webp',
     createdAt: new Date(Date.now())
   },
   lidl: {
@@ -67,6 +71,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN8',
     backgroundColor: '#0050AA',
     textColor: '#FFFFFF',
+    image: 'lidl.webp',
     createdAt: new Date(Date.now())
   }
 };

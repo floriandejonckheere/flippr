@@ -36,6 +36,13 @@
       "when": 1738492676597,
       "tag": "0004_remove_logo_from_card_types",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1738497694925,
+      "tag": "0005_add_image_to_card_types",
+      "breakpoints": true
     }
   ]
 }

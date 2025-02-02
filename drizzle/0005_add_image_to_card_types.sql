@@ -1,0 +1,1 @@
+ALTER TABLE "card_types" ADD COLUMN "image" text;

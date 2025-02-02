@@ -26,6 +26,7 @@ export const cardTypes = pgTable('card_types', {
   format: text('format').notNull(),
   backgroundColor: text('background_color').notNull(),
   textColor: text('text_color').notNull(),
+  image: text('image'),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
 
