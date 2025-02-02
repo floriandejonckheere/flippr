@@ -60,6 +60,7 @@
     "drizzle-seed": "^0.3.0",
     "pg": "^8.13.1",
     "postgres": "^3.4.5",
+    "sharp": "^0.33.5",
     "svelte-barcode": "^2.0.0",
     "uuid": "^11.0.5"
   },
