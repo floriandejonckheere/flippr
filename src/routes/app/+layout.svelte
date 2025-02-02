@@ -11,7 +11,7 @@
 </script>
 
 <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">
-  <div class="flex flex-col gap-16 p-8">
+  <div class="flex flex-col gap-4 p-8">
     <Header user={data?.user} />
 
     {@render children()}
