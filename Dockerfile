@@ -3,6 +3,9 @@ FROM node:22-alpine AS node
 ENV APP_HOME /app
 WORKDIR $APP_HOME/
 
+# Install dependencies
+RUN apk add --no-cache postgresql-client
+
 # Install PNPM
 ENV COREPACK_INTEGRITY_KEYS 0
 RUN corepack enable && corepack prepare pnpm --activate

@@ -13,6 +13,7 @@ services:
     build:
       context: .
     command: pnpm run dev
+    env_file: .env
     volumes:
       - .:/app/:cached
     depends_on:
