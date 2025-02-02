@@ -21,7 +21,7 @@
           <img
             src={`/static/uploads/${cardAndCardType.cardType.image}`}
             alt={cardAndCardType.cardType.name}
-            class="max-h-[5em] max-w-[8em]"
+            class="max-h-[4em] max-w-[6em]"
           />
         {:else}
           <h2>{cardAndCardType.cardType.name}</h2>

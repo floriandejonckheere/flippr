@@ -33,7 +33,7 @@ const cardTypesData: { [key: string]: CardType } = {
     id: uuidv4(),
     name: 'Delhaize',
     format: 'UPC',
-    backgroundColor: '#E22426',
+    backgroundColor: '#BC0000',
     textColor: '#FFFFFF',
     image: 'delhaize.webp',
     createdAt: new Date(Date.now())
@@ -42,8 +42,8 @@ const cardTypesData: { [key: string]: CardType } = {
     id: uuidv4(),
     name: 'Colruyt',
     format: 'CODE128',
-    backgroundColor: '#F26622',
-    textColor: '#FFFFFF',
+    backgroundColor: '#F7F7F7',
+    textColor: '#191917',
     image: 'colruyt.webp',
     createdAt: new Date(Date.now())
   },
@@ -51,7 +51,7 @@ const cardTypesData: { [key: string]: CardType } = {
     id: uuidv4(),
     name: 'Carrefour',
     format: 'EAN13',
-    backgroundColor: '#004E9F',
+    backgroundColor: '#005BAB',
     textColor: '#FFFFFF',
     image: 'carrefour.webp',
     createdAt: new Date(Date.now())

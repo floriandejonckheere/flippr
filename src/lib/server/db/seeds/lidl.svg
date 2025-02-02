@@ -1,16 +1,66 @@
-<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 115">
-  <defs>
-    <style>.cls-5{fill:#0050aa}.cls-3{fill:#fff000}.cls-3,.cls-4,.cls-5{fill-rule:evenodd}.cls-4{fill:#e60a14}</style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Ebene_1"
+   data-name="Ebene 1"
+   viewBox="0 0 107 107"
+   version="1.1"
+   sodipodi:docname="lidl.svg"
+   width="107"
+   height="107"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="6.9913043"
+     inkscape:cx="57.571517"
+     inkscape:cy="57.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Ebene_1" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-5{fill:#0050aa}.cls-3{fill:#fff000}.cls-3,.cls-4,.cls-5{fill-rule:evenodd}.cls-4{fill:#e60a14}</style>
   </defs>
-  <path fill="#0050aa" d="M1 1h113v113H1z"/>
-  <path class="cls-3" d="M57.5 7.38a50.12 50.12 0 1 0 50.12 50.14A50.14 50.14 0 0 0 57.5 7.38z"/>
-  <path class="cls-4"
-        d="M54.39 58.91l-8.85-8.85-10.2 10.22v3.43l2.57-2.58 7.12 7.14-2.63 2.62 1.71 1.72 14.24-14.26v-3.42l-3.96 3.98z"/>
-  <path class="cls-5"
-        d="M13.08 48.2h15.76v3.4h-2.63v11l9.13-5.08v9.31H13.08v-3.42h2.64V51.6h-2.64v-3.4zM79.53 48.2v3.4h2.64v11.81h-2.64v3.42h22.28v-9.31l-9.14 5.08v-11h2.64v-3.4H79.53z"/>
-  <path class="cls-4" d="M44.24 37.61a5.61 5.61 0 1 1-5.61 5.59 5.59 5.59 0 0 1 5.61-5.59z"/>
-  <path class="cls-4"
-        d="M57.5 4A53.51 53.51 0 1 0 111 57.52 53.53 53.53 0 0 0 57.5 4zm0 103.63a50.12 50.12 0 1 1 50.12-50.1 50.13 50.13 0 0 1-50.12 50.09z"/>
-  <path class="cls-5" d="M70.75 48.2h-15v3.4h2.63v11.81h-2.66v3.42h15c11.14 0 11.28-18.63.03-18.63z"/>
-  <path class="cls-3" d="M68.64 61h-.75v-7h.63c3.29 0 3.29 7 .12 7z"/>
+  <path
+     class="cls-3"
+     d="M 53.520004,3.3800009 A 50.12,50.12 0 1 0 103.64,53.520001 50.14,50.14 0 0 0 53.520004,3.3800009 Z"
+     id="path2" />
+  <path
+     class="cls-4"
+     d="m 50.410004,54.910001 -8.85,-8.85 -10.2,10.22 v 3.43 l 2.57,-2.58 7.12,7.14 -2.63,2.62 1.71,1.72 14.24,-14.26 v -3.42 z"
+     id="path3" />
+  <path
+     class="cls-5"
+     d="M 9.1000036,44.200001 H 24.860004 v 3.4 h -2.63 v 11 l 9.13,-5.08 v 9.31 H 9.1000036 v -3.42 h 2.6400004 v -11.81 H 9.1000036 Z m 66.4500004,0 v 3.4 h 2.64 v 11.81 h -2.64 v 3.42 h 22.28 v -9.31 l -9.14,5.08 v -11 h 2.64 v -3.4 z"
+     id="path4" />
+  <path
+     class="cls-4"
+     d="m 40.260004,33.610001 a 5.61,5.61 0 1 1 -5.61,5.59 5.59,5.59 0 0 1 5.61,-5.59 z"
+     id="path5" />
+  <path
+     class="cls-4"
+     d="M 53.520004,9.3497774e-7 A 53.51,53.51 0 1 0 107.02,53.520001 53.53,53.53 0 0 0 53.520004,9.3497774e-7 Z M 53.520004,103.63 A 50.12,50.12 0 1 1 103.64,53.530001 50.13,50.13 0 0 1 53.520004,103.62 Z"
+     id="path6" />
+  <path
+     class="cls-5"
+     d="m 66.770004,44.200001 h -15 v 3.4 h 2.63 v 11.81 h -2.66 v 3.42 h 15 c 11.14,0 11.28,-18.63 0.03,-18.63 z"
+     id="path7" />
+  <path
+     class="cls-3"
+     d="m 64.660004,57.000001 h -0.75 v -7 h 0.63 c 3.29,0 3.29,7 0.12,7 z"
+     id="path8" />
 </svg>
