@@ -29,6 +29,13 @@
       "when": 1738005990143,
       "tag": "0003_add_admin_to_users",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1738492676597,
+      "tag": "0004_remove_logo_from_card_types",
+      "breakpoints": true
     }
   ]
 }
