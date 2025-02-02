@@ -16,16 +16,16 @@
   <div class="flex h-1/3 items-center text-2xl">
     {#if data.cardAndCardType.cardType.image}
       <img
-          src={`/static/uploads/${data.cardAndCardType.cardType.image}`}
-          alt={data.cardAndCardType.cardType.name}
-          class="max-h-[2em] max-w-[3em]"
+        src={`/uploads/${data.cardAndCardType.cardType.image}`}
+        alt={data.cardAndCardType.cardType.name}
+        class="max-h-[2em] max-w-[3em]"
       />
     {:else}
       <h2>{data.cardAndCardType.cardType.name}</h2>
     {/if}
   </div>
 
-  <div class="flex h-2/3 w-full items-center justify-center p-4 rounded-md bg-white text-black">
+  <div class="flex h-2/3 w-full items-center justify-center rounded-md bg-white p-4 text-black">
     <Barcode
       value={data.cardAndCardType.card.value}
       elementTag={'svg'}
