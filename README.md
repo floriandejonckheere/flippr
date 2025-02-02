@@ -5,35 +5,19 @@ It's built with [SvelteKit](https://kit.svelte.dev/), [TailwindCSS](https://tail
 
 # Set up
 
-Create an `.env` file in the root of the project with the following content:
+Create an `.env` file in the root of the repository, following the `.env.example` file.
 
-```
-DATABASE_URL="postgres://postgres:postgres@localhost:5432/flippr"
-```
-
-Create a database:
+Build and start the application:
 
 ```
 docker compose up -d
-docker compose exec postgres -U postgres createdb flippr
-```
-
-Install dependencies:
-
-```
-npm install
 ```
 
 Seed the database (optional):
 
 ```
-npm run db:seed
-```
-
-Run the app:
-
-```
-npm run dev
+docker compose exec app pnpm run db:migrate 
+docker compose exec app pnpm run db:seed
 ```
 
 Open [localhost:5173](http://localhost:5173) in your browser.
