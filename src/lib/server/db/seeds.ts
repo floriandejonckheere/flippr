@@ -13,6 +13,8 @@ import { users, cards, cardTypes } from './schema';
 import type { User, Card, CardType } from './schema';
 import postgres from 'postgres';
 
+import { format } from './utils';
+
 dotenv.config({ path: './.env' });
 
 if (!('DATABASE_URL' in process.env)) throw new Error('DATABASE_URL not found in .env');
@@ -35,9 +37,9 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'UPC',
     backgroundColor: '#E22426',
     textColor: '#FFFFFF',
-    filename: 'delhaize.svg',
-    mimetype: 'image/svg+xml',
-    logo: readFileSync(resolve(modulePath, './seeds/delhaize.svg')),
+    filename: 'delhaize.webp',
+    mimetype: 'image/webp',
+    logo: await format(readFileSync(resolve(modulePath, './seeds/delhaize.svg'))),
     createdAt: new Date(Date.now())
   },
   colruyt: {
@@ -46,9 +48,9 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE128',
     backgroundColor: '#F26622',
     textColor: '#FFFFFF',
-    filename: 'colruyt.svg',
-    mimetype: 'image/svg+xml',
-    logo: readFileSync(resolve(modulePath, './seeds/colruyt.svg')),
+    filename: 'colruyt.webp',
+    mimetype: 'image/webp',
+    logo: await format(readFileSync(resolve(modulePath, './seeds/colruyt.svg'))),
     createdAt: new Date(Date.now())
   },
   carrefour: {
@@ -57,9 +59,9 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN13',
     backgroundColor: '#004E9F',
     textColor: '#FFFFFF',
-    filename: 'carrefour.svg',
-    mimetype: 'image/svg+xml',
-    logo: readFileSync(resolve(modulePath, './seeds/carrefour.svg')),
+    filename: 'carrefour.webp',
+    mimetype: 'image/webp',
+    logo: await format(readFileSync(resolve(modulePath, './seeds/carrefour.svg'))),
     createdAt: new Date(Date.now())
   },
   aldi: {
@@ -68,9 +70,9 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE39',
     backgroundColor: '#1D3587',
     textColor: '#FFFFFF',
-    filename: 'aldi.svg',
-    mimetype: 'image/svg+xml',
-    logo: readFileSync(resolve(modulePath, './seeds/aldi.svg')),
+    filename: 'aldi.webp',
+    mimetype: 'image/webp',
+    logo: await format(readFileSync(resolve(modulePath, './seeds/aldi.svg'))),
     createdAt: new Date(Date.now())
   },
   lidl: {
@@ -79,9 +81,9 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN8',
     backgroundColor: '#0050AA',
     textColor: '#FFFFFF',
-    filename: 'lidl.svg',
-    mimetype: 'image/svg+xml',
-    logo: readFileSync(resolve(modulePath, './seeds/lidl.svg')),
+    filename: 'lidl.webp',
+    mimetype: 'image/webp',
+    logo: await format(readFileSync(resolve(modulePath, './seeds/lidl.svg'))),
     createdAt: new Date(Date.now())
   }
 };

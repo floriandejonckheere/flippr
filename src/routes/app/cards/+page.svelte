@@ -19,7 +19,7 @@
       >
         {#if cardAndCardType.cardType.logo}
           <img
-            src={`data:image/svg+xml;utf8,${encodeURIComponent(cardAndCardType.cardType.logo)}`}
+            src={`data:${cardAndCardType.cardType.mimetype};utf8,${encodeURIComponent(cardAndCardType.cardType.logo)}`}
             alt={cardAndCardType.cardType.name}
             class="max-h-[5em] max-w-[8em]"
           />
