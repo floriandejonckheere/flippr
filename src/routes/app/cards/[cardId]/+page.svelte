@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
+
   import Barcode from 'svelte-barcode';
 
   import { titleStore } from '$lib/state';
@@ -44,4 +46,16 @@
       }}
     />
   </div>
+</div>
+
+<div>
+  <form method="POST" action="?/delete" use:enhance>
+    <input type="hidden" name="cardId" value={data.cardAndCardType.card.id} />
+    <button
+        type="submit"
+        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-50 px-4 py-3 text-sm text-red-800 hover:bg-red-100 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all"
+    >
+      Delete card
+    </button>
+  </form>
 </div>

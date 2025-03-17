@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 
 import { eq } from 'drizzle-orm';
 
@@ -27,3 +27,14 @@ export const load: PageServerLoad = async (event: { locals: { user: User } }) =>
 
   error(404, 'Not found');
 };
+
+export const actions = {
+  delete: async (event: { locals: { user: User } }) => {
+    await db
+      .delete(cards)
+      .where(eq(cards.userId, event.locals.user.id))
+      .where(eq(cards.id, event.params.cardId));
+
+    throw redirect(303, '/app/cards');
+  }
+}
