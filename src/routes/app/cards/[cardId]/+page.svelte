@@ -7,6 +7,15 @@
 
   titleStore.set('Card');
 
+  function confirmDelete(e: any) {
+    const confirmed = confirm('Are you sure you want to delete this card?');
+
+    if (!confirmed) {
+      // Prevent the form submission if not confirmed
+      e.preventDefault();
+    }
+  }
+
   export let data;
 </script>
 
@@ -54,6 +63,7 @@
     <button
         type="submit"
         class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-50 px-4 py-3 text-sm text-red-800 hover:bg-red-100 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all"
+        onclick={confirmDelete}
     >
       Delete card
     </button>
