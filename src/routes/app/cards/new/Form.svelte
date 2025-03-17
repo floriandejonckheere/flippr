@@ -16,7 +16,10 @@
     stepTo: (step: number) => void,
   } = $props();
 
-  let value = $state('');
+  let formData = {
+    cardType: '',
+    value: '',
+  }
 </script>
 
 <form method="POST" use:enhance>
@@ -35,6 +38,7 @@
             name="cardTypeId"
             class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
             onchange={() => stepTo(1)}
+            bind:value={formData.cardType}
             required
         >
           <option value="" disabled selected>Select a card</option>
@@ -44,6 +48,14 @@
         </select>
       </div>
     {:else if step === 1}
+
+      <input
+          type="hidden"
+          id="cardTypeId"
+          name="cardTypeId"
+          value={formData.cardType}
+      />
+
       <div>
         <button
             type="button"
@@ -57,12 +69,9 @@
       <div>
         <QrCodeScanner
             scanSuccess={(e: any) => {
-            console.log(e);
-
             value = e;
           }}
             scanFailure={(e: any) => {}}
-            paused={false}
             width={480}
             height={480}
             class="w-full max-w-sm overflow-hidden rounded-lg bg-slate-700"
@@ -75,7 +84,7 @@
             type="text"
             id="value"
             name="value"
-            bind:value
+            bind:value={formData.value}
             class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
             required
         />
