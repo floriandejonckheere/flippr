@@ -1,11 +1,9 @@
 import { eq, asc } from 'drizzle-orm';
 
-import type { PageServerLoad } from './$types';
-
 import { db } from '$lib/server/db';
-import { User, cards, cardTypes } from '$lib/server/db/schema';
+import { type User, cards, cardTypes } from '$lib/server/db/schema';
 
-export const load: PageServerLoad = async (event: { locals: { user: User } }) => {
+export const load = async (event: { locals: { user: User } }) => {
   const cardAndCardTypes = await db
     .select({
       card: cards,

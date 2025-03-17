@@ -1,12 +1,11 @@
-import { fail, redirect } from '@sveltejs/kit';
+import {type Actions, fail, redirect} from '@sveltejs/kit';
 
 import { eq, asc } from 'drizzle-orm';
 
 import type { PageServerLoad } from './$types';
 
 import { db } from '$lib/server/db';
-import { cardTypes, cards } from '$lib/server/db/schema';
-import * as table from '$lib/server/db/schema';
+import { cardTypes, cards, type CardType } from '$lib/server/db/schema';
 
 export const load: PageServerLoad = async () => {
   const cardTypesData = await db.select().from(cardTypes).orderBy(asc(cardTypes.name));
@@ -28,7 +27,7 @@ export const actions: Actions = {
       });
     }
 
-    const cardTypesData = await db.select().from(cardTypes).where(eq(cardTypes.id, cardTypeId));
+    const cardTypesData: CardType[] = await db.select().from(cardTypes).where(eq(cardTypes.id, cardTypeId));
 
     if (cardTypes.length === 0) {
       return fail(404, {

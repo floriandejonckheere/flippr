@@ -37,6 +37,7 @@
             onchange={() => stepTo(1)}
             required
         >
+          <option value="" disabled selected>Select a card</option>
           {#each data.cardTypes as cardType}
             <option value={cardType.id}>{cardType.name}</option>
           {/each}
