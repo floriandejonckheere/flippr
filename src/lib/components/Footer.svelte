@@ -7,7 +7,7 @@
   const { user } = $props();
 </script>
 
-<div class="fixed bottom-0 w-full bg-red-50 md:relative">
+<div class="absolute bottom-0 w-full bg-red-50 md:relative z-1">
   <nav class="flex flex-row justify-center font-bold text-white">
     <a
       href="/app/cards"
