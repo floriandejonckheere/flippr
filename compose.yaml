@@ -16,6 +16,7 @@ services:
     env_file: .env
     volumes:
       - .:/app/:cached
+      - ./.mkcert/:/root/.vite-plugin-mkcert/
     depends_on:
       - postgres
     ports:

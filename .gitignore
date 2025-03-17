@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 
 # File uploads
 static/uploads/*.*
+
+# Development certificates
+.mkcert
