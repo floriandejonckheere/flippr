@@ -16,34 +16,40 @@
     }
   }
 
-  let fullscreen = true;
+  let fullscreen = false;
 
   export let data;
 </script>
 
 {#if fullscreen}
   <div
-    class="absolute top-0 left-0 w-full h-full flex items-center justify-center md:h-[774px] md:w-[373px] md:rounded-[1.5rem] md:pt-8 bg-white z-2"
+    class="absolute inset-0 top-0 left-0 w-full h-full flex items-center justify-center overflow-hidden md:h-[774px] md:w-[373px] md:rounded-[1.5rem] bg-white z-2"
     onclick={() => { fullscreen = false }}
   >
-    <div class="transform rotate-90 origin-center">
-      <Barcode
-        value={data.cardAndCardType.card.value}
-        elementTag={'svg'}
-        options={{
-          format: data.cardAndCardType.cardType.format,
-          width: 4,
-          height: 200,
-          margin: 0,
-          text: '',
-          textAlign: 'center',
-          textPosition: 'bottom',
-          textMargin: 4,
-          fontSize: 20,
-          background: '#ffffff',
-          lineColor: '#000000',
-        }}
-      />
+    <div class="relative w-full h-full p-8">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="transform rotate-90 origin-center">
+          <div class="max-w-full max-h-full">
+            <Barcode
+              value={data.cardAndCardType.card.value}
+              elementTag={'svg'}
+              options={{
+                format: data.cardAndCardType.cardType.format,
+                width: 4,
+                height: 200,
+                margin: 0,
+                text: '',
+                textAlign: 'center',
+                textPosition: 'bottom',
+                textMargin: 4,
+                fontSize: 20,
+                background: '#ffffff',
+                lineColor: '#000000',
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {:else}
