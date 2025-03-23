@@ -9,5 +9,5 @@
 </script>
 
 <form method="post" use:enhance>
-  <button class="w-full rounded-2xl bg-red-800 p-4 text-center text-white shadow-md"> Sign out </button>
+  <button class="w-full rounded-lg bg-red-800 p-4 text-center text-white shadow-md"> Sign out </button>
 </form>
