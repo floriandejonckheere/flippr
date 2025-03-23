@@ -27,27 +27,25 @@
     onclick={() => { fullscreen = false }}
   >
     <div class="relative w-full h-full p-8">
-      <div class="absolute inset-0 flex items-center justify-center">
+      <div class="absolute inset-0 flex items-center justify-center overflow-visible">
         <div class="transform rotate-90 origin-center">
-          <div class="max-w-full max-h-full">
-            <Barcode
-              value={data.cardAndCardType.card.value}
-              elementTag={'svg'}
-              options={{
-                format: data.cardAndCardType.cardType.format,
-                width: 4,
-                height: 200,
-                margin: 0,
-                text: '',
-                textAlign: 'center',
-                textPosition: 'bottom',
-                textMargin: 4,
-                fontSize: 20,
-                background: '#ffffff',
-                lineColor: '#000000',
-              }}
-            />
-          </div>
+          <Barcode
+            value={data.cardAndCardType.card.value}
+            elementTag={'img'}
+            options={{
+              format: data.cardAndCardType.cardType.format,
+              width: 4,
+              height: 200,
+              margin: 0,
+              text: '',
+              textAlign: 'center',
+              textPosition: 'bottom',
+              textMargin: 4,
+              fontSize: 20,
+              background: '#ffffff',
+              lineColor: '#000000',
+            }}
+          />
         </div>
       </div>
     </div>
