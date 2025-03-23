@@ -93,6 +93,14 @@
   </div>
 
   <div>
+    <button
+        type="button"
+        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-white px-4 py-3 text-sm text-red-800 hover:bg-red-50 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition-all"
+        onclick={() => navigator.clipboard.writeText(data.cardAndCardType.card.value)}
+    >
+      Copy card number
+    </button>
+
     <form method="POST" action="?/delete" use:enhance>
       <input type="hidden" name="cardId" value={data.cardAndCardType.card.id} />
       <button
