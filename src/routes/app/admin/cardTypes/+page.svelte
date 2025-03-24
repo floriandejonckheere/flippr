@@ -1,5 +1,7 @@
 <script lang="ts">
   import { titleStore } from '$lib/state';
+  import {Plus} from "@steeze-ui/heroicons";
+  import {Icon} from "@steeze-ui/svelte-icon";
 
   titleStore.set('Card types');
 
@@ -29,4 +31,17 @@
     </a>
     <hr class="border-gray-200" />
   {/each}
+
+  <a href="/app/admin/cardTypes/new" class="flex items-center gap-3">
+    <div>
+      <div
+          class="flex h-[2em] w-[3em] items-center justify-center rounded-md bg-red-50 text-red-800"
+      >
+        <Icon src={Plus} class="h-4 w-4" />
+      </div>
+    </div>
+    <div>
+      Create a card type
+    </div>
+  </a>
 </div>

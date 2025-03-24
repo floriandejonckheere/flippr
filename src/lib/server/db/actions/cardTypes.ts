@@ -4,6 +4,13 @@ import { db } from '$lib/server/db';
 import { cards, cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
 
+export type CreateData = {
+  name: string;
+  format: string;
+  backgroundColor: string;
+  textColor: string;
+}
+
 export type UpdateData = {
   name: string;
   format: string;
@@ -22,6 +29,19 @@ export const all = async (user?: User | null) => {
     .orderBy(asc(cardTypes.name));
 
   return { data: cardTypesData };
+};
+
+export const create = async (data: CreateData, user?: User | null) => {
+  if (!user?.admin) {
+    return { err: { status: 403, message: 'Forbidden' } };
+  }
+
+  const [{ id }] = await db
+    .insert(cardTypes)
+    .values(data)
+    .returning({ id: cardTypes.id });
+
+  return { data: id };
 };
 
 export const find = async (id: string, user?: User | null) => {

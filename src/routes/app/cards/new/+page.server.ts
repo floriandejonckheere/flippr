@@ -1,4 +1,4 @@
-import { type Actions, error, fail, redirect } from '@sveltejs/kit';
+import { type Actions, error, redirect } from '@sveltejs/kit';
 
 import type { PageServerLoad } from './$types';
 
@@ -33,12 +33,12 @@ export const actions: Actions = {
       value
     };
 
-    const { err, data } = await cards.create(cardData, locals.user);
+    const { err, data: id } = await cards.create(cardData, locals.user);
 
     if (err) {
       throw error(err.status, err.message);
     }
 
-    return redirect(302, `/app/cards/${data}`);
+    return redirect(302, `/app/cards/${id}`);
   }
 };

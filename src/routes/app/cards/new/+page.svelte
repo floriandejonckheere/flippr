@@ -17,8 +17,8 @@
 </script>
 
 <Form
-    form={form}
-    data={data}
-    step={active}
-    stepTo={stepTo}
+  form={form}
+  data={data}
+  step={active}
+  stepTo={stepTo}
 />
