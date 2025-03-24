@@ -1,4 +1,4 @@
-import {asc, eq} from 'drizzle-orm';
+import { asc, eq, and } from 'drizzle-orm';
 
 import { db } from '$lib/server/db';
 import { cards, cardTypes } from '$lib/server/db/schema';
@@ -53,8 +53,12 @@ export const find = async (id: string, user?: User | null) => {
     })
     .from(cards)
     .innerJoin(cardTypes, eq(cards.cardTypeId, cardTypes.id))
-    .where(eq(cards.userId, user.id))
-    .where(eq(cards.id, id));
+    .where(
+      and(
+        eq(cards.userId, user.id),
+        eq(cards.id, id),
+      ),
+    );
 
   if (card.length > 0) {
     return { data: card[0] };
@@ -70,8 +74,12 @@ export const destroy = async (id: string, user?: User | null) => {
 
   await db
     .delete(cards)
-    .where(eq(cards.userId, user.id))
-    .where(eq(cards.id, id));
+    .where(
+      and(
+        eq(cards.userId, user.id),
+        eq(cards.id, id),
+      ),
+    );
 
   return {};
 };
