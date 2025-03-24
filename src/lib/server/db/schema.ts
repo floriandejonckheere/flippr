@@ -41,8 +41,3 @@ export const cards = pgTable('cards', {
   value: text('value').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull()
 });
-
-export type User = typeof users.$inferSelect;
-export type Session = typeof sessions.$inferSelect;
-export type CardType = typeof cardTypes.$inferSelect;
-export type Card = typeof cards.$inferSelect;

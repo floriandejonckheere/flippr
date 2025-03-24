@@ -25,7 +25,7 @@ export const actions = {
     const textColor = data.get('textColor') as string;
 
     try {
-      await update(params.cardTypeId, locals.user, { name, format, backgroundColor, textColor });
+      await update(params.cardTypeId, { name, format, backgroundColor, textColor }, locals.user);
     } catch (e: HTTPError) {
       throw error(e.status, e.message);
     }

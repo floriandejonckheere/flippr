@@ -2,7 +2,8 @@ import { eq } from 'drizzle-orm';
 
 import { HTTPError } from '$lib/server/errors';
 import { db } from '$lib/server/db';
-import { cardTypes, type User } from '$lib/server/db/schema';
+import { cardTypes } from '$lib/server/db/schema';
+import { type User } from '$lib/server/db/types';
 
 export type UpdateData = {
   name: string;
@@ -11,7 +12,7 @@ export type UpdateData = {
   textColor: string;
 };
 
-export const find = async (id: string, user?: User) => {
+export const find = async (id: string, user?: User | null) => {
   if (!user) {
     throw new HTTPError(403, 'Forbidden');
   }
@@ -28,7 +29,7 @@ export const find = async (id: string, user?: User) => {
   throw new HTTPError(404, 'Not found');
 };
 
-export const update = async (id: string, user?: User, data: UpdateData) => {
+export const update = async (id: string, data: UpdateData, user?: User | null) => {
   if (!user?.admin) {
     throw new HTTPError(403, 'Forbidden');
   }
@@ -39,7 +40,7 @@ export const update = async (id: string, user?: User, data: UpdateData) => {
     .where(eq(cardTypes.id, id));
 };
 
-export const destroy = async (id: string, user?: User) => {
+export const destroy = async (id: string, user?: User | null) => {
   if (!user?.admin) {
     throw new HTTPError(403, 'Forbidden');
   }

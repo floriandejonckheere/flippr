@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
     const cardAndCardType = await find(params.cardId, locals.user);
 
     return { cardAndCardType };
-  } catch (e: HTTPError ) {
+  } catch (e: HTTPError) {
     error(e.status, e.message);
   }
 };

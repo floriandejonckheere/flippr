@@ -2,9 +2,10 @@ import {asc, eq} from 'drizzle-orm';
 
 import { HTTPError } from '$lib/server/errors';
 import { db } from '$lib/server/db';
-import {cards, cardTypes, type User} from '$lib/server/db/schema';
+import { cards, cardTypes } from '$lib/server/db/schema';
+import { type User } from '$lib/server/db/types';
 
-export const all = async (user?: User) => {
+export const all = async (user?: User | null) => {
   if (!user) {
     throw new HTTPError(403, 'Forbidden');
   }
@@ -20,7 +21,7 @@ export const all = async (user?: User) => {
     .orderBy(asc(cardTypes.name));
 };
 
-export const find = async (id: string, user?: User) => {
+export const find = async (id: string, user?: User | null) => {
   if (!user) {
     throw new HTTPError(403, 'Forbidden');
   }
@@ -42,7 +43,7 @@ export const find = async (id: string, user?: User) => {
   throw new HTTPError(404, 'Not found');
 };
 
-export const destroy = async (id: string, user?: User) => {
+export const destroy = async (id: string, user?: User | null) => {
   if (!user?.admin) {
     throw new HTTPError(403, 'Forbidden');
   }

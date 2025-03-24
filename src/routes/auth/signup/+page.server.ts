@@ -50,7 +50,7 @@ export const actions: Actions = {
       const sessionToken = auth.generateSessionToken();
       const session = await auth.createSession(sessionToken, userId);
       auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
-    } catch (e) {
+    } catch (e: HTTPError) {
       console.error(e);
 
       return fail(500, { message: 'An error has occurred' });
