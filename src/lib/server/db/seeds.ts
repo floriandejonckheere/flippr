@@ -13,7 +13,7 @@ import { users, cards, cardTypes } from './schema';
 import type { User, Card, CardType } from './types';
 import postgres from 'postgres';
 
-import { convertBuffer } from './utils';
+import { convert } from './utils';
 
 dotenv.config({ path: './.env' });
 
@@ -35,7 +35,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'UPC',
     backgroundColor: '#BC0000',
     textColor: '#FFFFFF',
-    image: 'delhaize.webp',
+    image: true,
     createdAt: new Date(Date.now())
   },
   colruyt: {
@@ -44,7 +44,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE128',
     backgroundColor: '#F7F7F7',
     textColor: '#191917',
-    image: 'colruyt.webp',
+    image: true,
     createdAt: new Date(Date.now())
   },
   carrefour: {
@@ -53,7 +53,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN13',
     backgroundColor: '#005BAB',
     textColor: '#FFFFFF',
-    image: 'carrefour.webp',
+    image: true,
     createdAt: new Date(Date.now())
   },
   aldi: {
@@ -62,7 +62,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'CODE39',
     backgroundColor: '#1D3587',
     textColor: '#FFFFFF',
-    image: 'aldi.webp',
+    image: true,
     createdAt: new Date(Date.now())
   },
   lidl: {
@@ -71,7 +71,7 @@ const cardTypesData: { [key: string]: CardType } = {
     format: 'EAN8',
     backgroundColor: '#0050AA',
     textColor: '#FFFFFF',
-    image: 'lidl.webp',
+    image: true,
     createdAt: new Date(Date.now())
   }
 };
@@ -174,7 +174,7 @@ const main = async () => {
   console.log('Uploading card type images...');
   const modulePath = dirname(fileURLToPath(import.meta.url));
   for (const cardType of Object.values(cardTypesData)) {
-    const buffer = await convertBuffer(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
+    const buffer = await convert(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
 
     const path = resolve(modulePath, '../../../../static/uploads', `${cardType.id}.webp`);
 

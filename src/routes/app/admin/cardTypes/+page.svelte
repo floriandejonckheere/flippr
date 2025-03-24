@@ -18,7 +18,7 @@
         >
           {#if cardType.image}
             <img
-                src={`/uploads/${cardType.image}`}
+                src={`/uploads/${cardType.id}.webp`}
                 alt={cardType.name}
                 class="max-h-[1em] max-w-[2em]"
             />

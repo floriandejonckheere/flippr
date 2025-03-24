@@ -26,7 +26,7 @@
 >
   {#if $dataStore.image}
     <img
-      src={`/uploads/${$dataStore.image}`}
+      src={`/uploads/${$dataStore.id}.webp`}
       alt={$dataStore.name}
       class="max-h-[6em] max-w-[10em]"
     />

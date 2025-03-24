@@ -50,7 +50,7 @@ export const create = async (data: CreateData, user?: User | null) => {
     .insert(cardTypes)
     .values({
       ...cardTypeData,
-      image: image ? `${data.id}.webp` : null,
+      image: (image !== null),
     })
     .returning({ id: cardTypes.id });
 
