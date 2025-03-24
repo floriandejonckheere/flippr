@@ -1,10 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import type { RequestEvent } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
 import { encodeBase64url } from '@oslojs/encoding';
+
+import { eq } from 'drizzle-orm';
+
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
+import { type Session } from '$lib/server/db/types';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
@@ -18,7 +21,7 @@ export function generateSessionToken() {
 
 export async function createSession(token: string, userId: string) {
   const sessionId = uuidv4();
-  const session: table.Session = {
+  const session: Session = {
     id: sessionId,
     token,
     userId,
