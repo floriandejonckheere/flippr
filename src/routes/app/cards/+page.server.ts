@@ -1,20 +1,14 @@
-import { eq, asc } from 'drizzle-orm';
+import { error } from '@sveltejs/kit';
 
-import { db } from '$lib/server/db';
-import { type User, cards, cardTypes } from '$lib/server/db/schema';
+import { HTTPError } from '$lib/server/errors';
+import { all } from '$lib/server/db/actions/cards';
 
-export const load = async (event: { locals: { user: User } }) => {
-  const cardAndCardTypes = await db
-    .select({
-      card: cards,
-      cardType: cardTypes
-    })
-    .from(cards)
-    .innerJoin(cardTypes, eq(cards.cardTypeId, cardTypes.id))
-    .where(eq(cards.userId, event.locals.user.id))
-    .orderBy(asc(cardTypes.name));
+export const load = async ({ locals }) => {
+  try {
+    const cardAndCardTypes = await all(locals.user);
 
-  return {
-    cardAndCardTypes
-  };
+    return { cardAndCardTypes };
+  } catch (e: HTTPError) {
+    throw error(e.status, e.message);
+  }
 };
