@@ -79,7 +79,7 @@
       </div>
 
       <div>
-        <label for="name" class="mb-2 block text-sm dark:text-white"> Value </label>
+        <label for="value" class="mb-2 block text-sm dark:text-white"> Value </label>
         <input
             type="text"
             id="value"

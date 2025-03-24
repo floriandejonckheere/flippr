@@ -8,7 +8,7 @@
 
 <div class="flex flex-col gap-4">
   {#each data.cardTypes as cardType}
-    <a href="/app/cards/{cardType.id}" class="flex items-center gap-3">
+    <a href="/app/admin/cardTypes/{cardType.id}" class="flex items-center gap-3">
       <div>
         <div
             class="flex h-[2em] w-[3em] items-center justify-center rounded-md shadow-sm"
