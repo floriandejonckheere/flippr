@@ -2,17 +2,16 @@ import { error, redirect } from '@sveltejs/kit';
 
 import type { PageServerLoad } from './$types';
 
-import { HTTPError } from '$lib/server/errors';
 import { find, update, destroy } from '$lib/server/db/actions/cardTypes';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
-  try {
-    const cardType = await find(params.cardTypeId, locals.user);
+  const { err, data } = await find(params.cardTypeId, locals.user);
 
-    return { cardType };
-  } catch (e: HTTPError) {
-    throw error(e.status, e.message);
+  if (err) {
+    throw error(err.status, err.message);
   }
+
+  return { cardType: data };
 };
 
 export const actions = {
@@ -24,19 +23,19 @@ export const actions = {
     const backgroundColor = data.get('backgroundColor') as string;
     const textColor = data.get('textColor') as string;
 
-    try {
-      await update(params.cardTypeId, { name, format, backgroundColor, textColor }, locals.user);
-    } catch (e: HTTPError) {
-      throw error(e.status, e.message);
+    const { err } = await update(params.cardTypeId, { name, format, backgroundColor, textColor }, locals.user);
+
+    if (err) {
+      throw error(err.status, err.message);
     }
 
     throw redirect(303, '/app/admin/cardTypes');
   },
   delete: async ({ locals, params }) => {
-    try {
-      await destroy(params.cardTypeId, locals.user);
-    } catch (e: HTTPError) {
-      throw error(e.status, e.message);
+    const { err } = await destroy(params.cardTypeId, locals.user);
+
+    if (err) {
+      throw error(err.status, err.message);
     }
 
     throw redirect(303, '/app/admin/cardTypes');

@@ -1,6 +1,5 @@
 import { eq } from 'drizzle-orm';
 
-import { HTTPError } from '$lib/server/errors';
 import { db } from '$lib/server/db';
 import { cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
@@ -14,7 +13,7 @@ export type UpdateData = {
 
 export const find = async (id: string, user?: User | null) => {
   if (!user) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
   const cardType = await db
@@ -23,29 +22,33 @@ export const find = async (id: string, user?: User | null) => {
     .where(eq(cardTypes.id, id));
 
   if (cardType.length > 0) {
-    return cardType[0];
+    return { data: cardType[0] };
   }
 
-  throw new HTTPError(404, 'Not found');
+  return { err: { status: 404, message: 'Not found' } };
 };
 
 export const update = async (id: string, data: UpdateData, user?: User | null) => {
   if (!user?.admin) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
   await db
     .update(cardTypes)
     .set(data)
     .where(eq(cardTypes.id, id));
+
+  return {};
 };
 
 export const destroy = async (id: string, user?: User | null) => {
   if (!user?.admin) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
   await db
     .delete(cardTypes)
     .where(eq(cardTypes.id, id));
+
+  return {};
 };

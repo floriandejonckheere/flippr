@@ -1,14 +1,14 @@
 import { error } from '@sveltejs/kit';
 
-import { HTTPError } from '$lib/server/errors';
 import { all } from '$lib/server/db/actions/cards';
 
 export const load = async ({ locals }) => {
-  try {
-    const cardAndCardTypes = await all(locals.user);
+  const { err, data } = await all(locals.user);
+console.log(data);
 
-    return { cardAndCardTypes };
-  } catch (e: HTTPError) {
-    throw error(e.status, e.message);
+  if (err) {
+    throw error(err.status, err.message);
   }
+
+  return { cardAndCardTypes: data };
 };

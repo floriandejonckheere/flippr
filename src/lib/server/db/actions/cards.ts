@@ -1,16 +1,15 @@
 import {asc, eq} from 'drizzle-orm';
 
-import { HTTPError } from '$lib/server/errors';
 import { db } from '$lib/server/db';
 import { cards, cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
 
 export const all = async (user?: User | null) => {
   if (!user) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
-  return db
+  const cardAndCardTypes = await db
     .select({
       card: cards,
       cardType: cardTypes
@@ -19,11 +18,13 @@ export const all = async (user?: User | null) => {
     .innerJoin(cardTypes, eq(cards.cardTypeId, cardTypes.id))
     .where(eq(cards.userId, user.id))
     .orderBy(asc(cardTypes.name));
+
+  return { data: cardAndCardTypes };
 };
 
 export const find = async (id: string, user?: User | null) => {
   if (!user) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
   const card = await db
@@ -37,19 +38,21 @@ export const find = async (id: string, user?: User | null) => {
     .where(eq(cards.id, id));
 
   if (card.length > 0) {
-    return card[0];
+    return { data: card[0] };
   }
 
-  throw new HTTPError(404, 'Not found');
+  return { err: { status: 404, message: 'Not found' } };
 };
 
 export const destroy = async (id: string, user?: User | null) => {
   if (!user?.admin) {
-    throw new HTTPError(403, 'Forbidden');
+    return { err: { status: 403, message: 'Forbidden' } };
   }
 
   await db
     .delete(cards)
     .where(eq(cards.userId, user.id))
     .where(eq(cards.id, id));
+
+  return {};
 };
