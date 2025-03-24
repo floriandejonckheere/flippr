@@ -10,12 +10,14 @@ export const actions = {
     const format = data.get('format') as string;
     const backgroundColor = data.get('backgroundColor') as string;
     const textColor = data.get('textColor') as string;
+    const image = data.get('image') as File;
 
     const cardTypeData = {
       name,
       format,
       backgroundColor,
-      textColor
+      textColor,
+      image
     }
 
     const { err, data: id } = await create(cardTypeData, locals.user);

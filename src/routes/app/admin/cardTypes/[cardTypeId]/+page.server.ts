@@ -22,8 +22,17 @@ export const actions = {
     const format = data.get('format') as string;
     const backgroundColor = data.get('backgroundColor') as string;
     const textColor = data.get('textColor') as string;
+    const image = data.get('image') as File;
 
-    const { err } = await update(params.cardTypeId, { name, format, backgroundColor, textColor }, locals.user);
+    const cardTypeData = {
+      name,
+      format,
+      backgroundColor,
+      textColor,
+      image
+    }
+
+    const { err } = await update(params.cardTypeId, cardTypeData, locals.user);
 
     if (err) {
       throw error(err.status, err.message);

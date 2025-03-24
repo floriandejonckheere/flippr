@@ -10,10 +10,10 @@ import * as dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
 
 import { users, cards, cardTypes } from './schema';
-import type { User, Card, CardType } from './schema';
+import type { User, Card, CardType } from './types';
 import postgres from 'postgres';
 
-import { format } from './utils';
+import { convertBuffer } from './utils';
 
 dotenv.config({ path: './.env' });
 
@@ -174,7 +174,7 @@ const main = async () => {
   console.log('Uploading card type images...');
   const modulePath = dirname(fileURLToPath(import.meta.url));
   for (const cardType of Object.values(cardTypesData)) {
-    const buffer = await format(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
+    const buffer = await convertBuffer(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
 
     const path = resolve(modulePath, '../../../../static/uploads', `${cardType.name.toLowerCase()}.webp`);
 

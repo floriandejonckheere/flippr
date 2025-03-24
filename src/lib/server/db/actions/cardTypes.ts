@@ -1,7 +1,13 @@
-import {asc, eq} from 'drizzle-orm';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { writeFileSync } from 'fs';
+
+import { asc, eq } from 'drizzle-orm';
+
+import { convert } from '$lib/server/db/utils';
 
 import { db } from '$lib/server/db';
-import { cards, cardTypes } from '$lib/server/db/schema';
+import { cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
 
 export type CreateData = {
@@ -9,6 +15,7 @@ export type CreateData = {
   format: string;
   backgroundColor: string;
   textColor: string;
+  image: File;
 }
 
 export type UpdateData = {
@@ -36,10 +43,20 @@ export const create = async (data: CreateData, user?: User | null) => {
     return { err: { status: 403, message: 'Forbidden' } };
   }
 
+  const { image, ...cardTypeData } = data;
+
+  // Insert card type
   const [{ id }] = await db
     .insert(cardTypes)
-    .values(data)
+    .values({ ...cardTypeData, image: `${data.name.toLowerCase()}.webp` })
     .returning({ id: cardTypes.id });
+
+  // Convert uploaded file
+  const modulePath = dirname(fileURLToPath(import.meta.url));
+  const path = resolve(modulePath, '../../../../../static/uploads', `${data.name.toLowerCase()}.webp`);
+  const buffer = await convert(Buffer.from(await image.arrayBuffer()));
+
+  writeFileSync(path, buffer);
 
   return { data: id };
 };
