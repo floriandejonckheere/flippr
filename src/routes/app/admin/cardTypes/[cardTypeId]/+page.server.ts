@@ -23,7 +23,11 @@ export const load: PageServerLoad = async ({ params }) => {
 };
 
 export const actions = {
-  update: async ({ params, request }) => {
+  update: async ({ locals, params, request }) => {
+    if (!locals.user?.isAdmin) {
+      error(403, 'Forbidden');
+    }
+
     const data = await request.formData();
 
     const name = data.get('name') as string;
@@ -43,7 +47,11 @@ export const actions = {
 
     throw redirect(303, '/app/admin/cardTypes');
   },
-  delete: async ({ params }) => {
+  delete: async ({ locals, params }) => {
+    if (!locals.user?.isAdmin) {
+      error(403, 'Forbidden');
+    }
+
     await db
       .delete(cardTypes)
       .where(eq(cardTypes.id, params.cardTypeId));
