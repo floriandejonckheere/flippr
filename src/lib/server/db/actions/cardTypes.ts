@@ -1,7 +1,7 @@
-import { eq } from 'drizzle-orm';
+import {asc, eq} from 'drizzle-orm';
 
 import { db } from '$lib/server/db';
-import { cardTypes } from '$lib/server/db/schema';
+import { cards, cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
 
 export type UpdateData = {
@@ -9,6 +9,19 @@ export type UpdateData = {
   format: string;
   backgroundColor: string;
   textColor: string;
+};
+
+export const all = async (user?: User | null) => {
+  if (!user) {
+    return { err: { status: 403, message: 'Forbidden' } };
+  }
+
+  const cardTypesData = await db
+    .select()
+    .from(cardTypes)
+    .orderBy(asc(cardTypes.name));
+
+  return { data: cardTypesData };
 };
 
 export const find = async (id: string, user?: User | null) => {

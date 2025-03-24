@@ -22,7 +22,7 @@
   }
 </script>
 
-<form method="POST" use:enhance>
+<form method="POST" action="?/create" use:enhance>
   <div class="grid gap-y-4">
     {#if form?.message}
       <p class="text-sm font-bold text-red-600">

@@ -1,27 +1,16 @@
-import { asc } from "drizzle-orm";
-
-import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-import { db } from '$lib/server/db';
-import { cardTypes, type CardType } from '$lib/server/db/schema';
+import { all } from '$lib/server/db/actions/cardTypes';
 
 export const load: PageServerLoad = async ({ locals }) => {
-  if (!locals.user) {
-    return redirect(302, '/auth/signin');
-  }
+  const { err, data } = await all(locals.user);
 
-  if (!locals.user.admin) {
-    return redirect(302, '/app/cards');
+  if (err) {
+    throw error(err.status, err.message);
   }
-
-  const cardTypesData: CardType[] = await db
-    .select()
-    .from(cardTypes)
-    .orderBy(asc(cardTypes.name));
 
   return {
-    cardTypes: cardTypesData,
+    cardTypes: data
   };
-
 };

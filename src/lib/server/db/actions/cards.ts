@@ -4,6 +4,12 @@ import { db } from '$lib/server/db';
 import { cards, cardTypes } from '$lib/server/db/schema';
 import { type User } from '$lib/server/db/types';
 
+export type CreateData = {
+  userId: string,
+  cardTypeId: string,
+  value: string,
+}
+
 export const all = async (user?: User | null) => {
   if (!user) {
     return { err: { status: 403, message: 'Forbidden' } };
@@ -21,6 +27,19 @@ export const all = async (user?: User | null) => {
 
   return { data: cardAndCardTypes };
 };
+
+export const create = async (data: CreateData, user?: User | null) => {
+  if (!user) {
+    return { err: { status: 403, message: 'Forbidden' } };
+  }
+
+  const [{ id }] = await db
+    .insert(cards)
+    .values(data)
+    .returning({ id: cards.id });
+
+  return { data: id };
+}
 
 export const find = async (id: string, user?: User | null) => {
   if (!user) {

@@ -1,50 +1,44 @@
-import {type Actions, fail, redirect} from '@sveltejs/kit';
-
-import { eq, asc } from 'drizzle-orm';
+import { type Actions, error, fail, redirect } from '@sveltejs/kit';
 
 import type { PageServerLoad } from './$types';
 
-import { db } from '$lib/server/db';
-import { cardTypes, cards, type CardType } from '$lib/server/db/schema';
+import * as cardTypes from '$lib/server/db/actions/cardTypes';
+import * as cards from '$lib/server/db/actions/cards';
 
-export const load: PageServerLoad = async () => {
-  const cardTypesData = await db.select().from(cardTypes).orderBy(asc(cardTypes.name));
+export const load: PageServerLoad = async ({ locals }) => {
+  const { err, data } = await cardTypes.all(locals.user);
+
+  if (err) {
+    throw error(err.status, err.message);
+  }
 
   return {
-    cardTypes: cardTypesData
+    cardTypes: data
   };
 };
 
 export const actions: Actions = {
-  default: async (event) => {
-    const formData = await event.request.formData();
-    const cardTypeId = formData.get('cardTypeId');
-    const value = formData.get('value');
+  create: async ({ locals, request }) => {
+    const formData = await request.formData();
+    const cardTypeId = formData.get('cardTypeId') as string;
+    const value = formData.get('value') as string;
 
-    if (!cardTypeId || !value) {
-      return fail(400, {
-        message: 'Card type and value are required'
-      });
+    if (!locals.user) {
+      throw error(401, 'Unauthorized');
     }
-
-    const cardTypesData: CardType[] = await db.select().from(cardTypes).where(eq(cardTypes.id, cardTypeId));
-
-    if (cardTypes.length === 0) {
-      return fail(404, {
-        message: 'Card type not found'
-      });
-    }
-
-    const cardType = cardTypes[0];
 
     const cardData = {
-      userId: event.locals.user.id,
+      userId: locals.user.id,
       cardTypeId,
       value
     };
 
-    await db.insert(cards).values(cardData);
+    const { err, data } = await cards.create(cardData, locals.user);
 
-    return redirect(302, '/app/cards');
+    if (err) {
+      throw error(err.status, err.message);
+    }
+
+    return redirect(302, `/app/cards/${data}`);
   }
 };
