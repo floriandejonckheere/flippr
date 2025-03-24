@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { writable } from 'svelte/store';
+
   import { enhance } from '$app/forms';
   import type { ActionData } from './$types';
 
@@ -10,13 +12,13 @@
 
   let { form, data }: { form: ActionData; data: any } = $props();
 
-  let formData = {
+  let dataStore = writable({
     name: data.cardType.name,
     format: data.cardType.format,
     backgroundColor: data.cardType.backgroundColor,
     textColor: data.cardType.textColor,
     image: data.cardType.image
-  };
+  });
 
   function confirmDelete(e: any) {
     const confirmed = confirm('Are you sure you want to delete this card type? This will also delete all cards with this card type!');
@@ -29,23 +31,23 @@
 </script>
 
 <div
-  class="flex h-[12em] w-full items-center justify-center rounded-md p-4 shadow-md"
-  style="background-color: {data.cardType.backgroundColor}; color: {data.cardType.textColor};"
+    class="flex h-[12em] w-full items-center justify-center rounded-md p-4 shadow-md"
+    style="background-color: {$dataStore.backgroundColor}; color: {$dataStore.textColor};"
 >
-  {#if data.cardType.image}
+  {#if $dataStore.image}
     <img
-      src={`/uploads/${data.cardType.image}`}
-      alt={data.cardType.name}
-      class="max-h-[6em] max-w-[10em]"
+        src={`/uploads/${$dataStore.image}`}
+        alt={$dataStore.name}
+        class="max-h-[6em] max-w-[10em]"
     />
   {:else}
-    <h2>{data.cardType.name}</h2>
+    <h2>{$dataStore.name}</h2>
   {/if}
 </div>
 
 <Form
   form={form}
-  data={formData}
+  store={dataStore}
   action="?/update"
 />
 

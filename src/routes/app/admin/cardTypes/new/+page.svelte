@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { writable } from 'svelte/store';
+
   import type { ActionData } from './$types';
 
   import Form from '../Form.svelte';
@@ -9,32 +11,32 @@
 
   let { form }: { form: ActionData } = $props();
 
-  let data = {
+  let dataStore = writable({
     name: 'My Card',
     format: '',
     backgroundColor: '#000000',
     textColor: '#FFFFFF',
     image: null
-  };
+  });
 </script>
 
 <div
   class="flex h-[12em] w-full items-center justify-center rounded-md p-4 shadow-md"
-  style="background-color: {data.backgroundColor}; color: {data.textColor};"
+  style="background-color: {$dataStore.backgroundColor}; color: {$dataStore.textColor};"
 >
-  {#if data.image}
+  {#if $dataStore.image}
     <img
-      src={`/uploads/${data.image}`}
-      alt={data.name}
+      src={`/uploads/${$dataStore.image}`}
+      alt={$dataStore.name}
       class="max-h-[6em] max-w-[10em]"
     />
   {:else}
-    <h2>{data.name}</h2>
+    <h2>{$dataStore.name}</h2>
   {/if}
 </div>
 
 <Form
   form={form}
-  data={data}
+  store={dataStore}
   action="?/create"
 />
