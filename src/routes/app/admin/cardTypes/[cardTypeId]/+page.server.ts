@@ -1,33 +1,22 @@
 import { error, redirect } from '@sveltejs/kit';
 
-import { eq } from 'drizzle-orm';
-
 import type { PageServerLoad } from './$types';
 
-import { db } from '$lib/server/db';
-import { cardTypes } from '$lib/server/db/schema';
+import { HTTPError } from '$lib/server/errors';
+import { find, update, destroy } from '$lib/server/db/actions/cardTypes';
 
-export const load: PageServerLoad = async ({ params }) => {
-  const cardType = await db
-    .select()
-    .from(cardTypes)
-    .where(eq(cardTypes.id, params.cardTypeId));
+export const load: PageServerLoad = async ({ locals, params }) => {
+  try {
+    const cardType = await find(params.cardTypeId, locals.user);
 
-  if (cardType.length > 0) {
-    return {
-      cardType: cardType[0]
-    };
+    return { cardType };
+  } catch (e: HTTPError) {
+    throw error(e.status, e.message);
   }
-
-  error(404, 'Not found');
 };
 
 export const actions = {
   update: async ({ locals, params, request }) => {
-    if (!locals.user?.isAdmin) {
-      error(403, 'Forbidden');
-    }
-
     const data = await request.formData();
 
     const name = data.get('name') as string;
@@ -35,26 +24,20 @@ export const actions = {
     const backgroundColor = data.get('backgroundColor') as string;
     const textColor = data.get('textColor') as string;
 
-    await db
-      .update(cardTypes)
-      .set({
-        name,
-        format,
-        backgroundColor,
-        textColor,
-      })
-      .where(eq(cardTypes.id, params.cardTypeId));
+    try {
+      await update(params.cardTypeId, locals.user, { name, format, backgroundColor, textColor });
+    } catch (e: HTTPError) {
+      throw error(e.status, e.message);
+    }
 
     throw redirect(303, '/app/admin/cardTypes');
   },
   delete: async ({ locals, params }) => {
-    if (!locals.user?.isAdmin) {
-      error(403, 'Forbidden');
+    try {
+      await destroy(params.cardTypeId, locals.user);
+    } catch (e: HTTPError) {
+      throw error(e.status, e.message);
     }
-
-    await db
-      .delete(cardTypes)
-      .where(eq(cardTypes.id, params.cardTypeId));
 
     throw redirect(303, '/app/admin/cardTypes');
   }
