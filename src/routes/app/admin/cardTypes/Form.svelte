@@ -2,24 +2,10 @@
   import { enhance } from '$app/forms';
   import type { ActionData } from './$types';
 
-  let {
-    form,
-    data,
-  }: {
-    form: ActionData,
-    data: any,
-  } = $props();
-
-  let formData = {
-    name: data.name,
-    format: data.format,
-    backgroundColor: data.backgroundColor,
-    textColor: data.textColor,
-    image: data.image
-  };
+  let { form, data, action }: { form: ActionData, data: any, action: string } = $props();
 </script>
 
-<form method="POST" action="?/update" use:enhance>
+<form method="POST" action={action} use:enhance>
   <div class="grid gap-y-4">
     {#if form?.message}
       <p class="text-sm font-bold text-red-600">
@@ -33,7 +19,7 @@
           type="text"
           id="name"
           name="name"
-          bind:value={formData.name}
+          bind:value={data.name}
           class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
           required
       />
@@ -45,7 +31,7 @@
           id="format"
           name="format"
           class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
-          bind:value={formData.format}
+          bind:value={data.format}
           required
       >
         <option value="" disabled selected>Select a format</option>
@@ -74,7 +60,7 @@
           type="text"
           id="backgroundColor"
           name="backgroundColor"
-          bind:value={formData.backgroundColor}
+          bind:value={data.backgroundColor}
           class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
           required
       />
@@ -86,7 +72,7 @@
           type="text"
           id="textColor"
           name="textColor"
-          bind:value={formData.textColor}
+          bind:value={data.textColor}
           class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
           required
       />

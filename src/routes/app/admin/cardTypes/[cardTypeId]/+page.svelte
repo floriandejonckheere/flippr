@@ -2,13 +2,21 @@
   import { enhance } from '$app/forms';
   import type { ActionData } from './$types';
 
-  import Form from './Form.svelte';
+  import Form from '../Form.svelte';
 
   import { titleStore } from '$lib/state';
 
   titleStore.set('Card type');
 
   let { form, data }: { form: ActionData; data: any } = $props();
+
+  let formData = {
+    name: data.cardType.name,
+    format: data.cardType.format,
+    backgroundColor: data.cardType.backgroundColor,
+    textColor: data.cardType.textColor,
+    image: data.cardType.image
+  };
 
   function confirmDelete(e: any) {
     const confirmed = confirm('Are you sure you want to delete this card type? This will also delete all cards with this card type!');
@@ -36,8 +44,9 @@
 </div>
 
 <Form
-    form={form}
-    data={data.cardType}
+  form={form}
+  data={formData}
+  action="?/update"
 />
 
 <div>

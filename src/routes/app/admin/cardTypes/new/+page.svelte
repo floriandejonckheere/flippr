@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ActionData } from './$types';
 
-  import Form from './Form.svelte';
+  import Form from '../Form.svelte';
 
   import { titleStore } from '$lib/state';
 
@@ -36,4 +36,5 @@
 <Form
   form={form}
   data={data}
+  action="?/create"
 />
