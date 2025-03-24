@@ -86,7 +86,6 @@
         name="image"
         accept="image/png, image/jpeg, image/svg+xml"
         class="block w-full text-sm text-slate-500 my-3 file:rounded-lg file:border file:border-transparent file:bg-red-50 file:cursor-pointer file:mr-4 file:px-4 file:py-3 file:text-sm file:text-red-800 file:hover:bg-red-100 file:disabled:pointer-events-none file:disabled:opacity-50 file:dark:focus:outline-none file:dark:focus:ring-1 file:dark:focus:ring-gray-600"
-        required
       />
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, or JPG (max. 800x400px)</p>
     </div>

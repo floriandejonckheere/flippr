@@ -48,15 +48,20 @@ export const create = async (data: CreateData, user?: User | null) => {
   // Insert card type
   const [{ id }] = await db
     .insert(cardTypes)
-    .values({ ...cardTypeData, image: `${data.name.toLowerCase()}.webp` })
+    .values({
+      ...cardTypeData,
+      image: image ? `${data.id}.webp` : null,
+    })
     .returning({ id: cardTypes.id });
 
   // Convert uploaded file
-  const modulePath = dirname(fileURLToPath(import.meta.url));
-  const path = resolve(modulePath, '../../../../../static/uploads', `${data.name.toLowerCase()}.webp`);
-  const buffer = await convert(Buffer.from(await image.arrayBuffer()));
+  if (image.size !== 0) {
+    const modulePath = dirname(fileURLToPath(import.meta.url));
+    const path = resolve(modulePath, '../../../../../static/uploads', `${id}.webp`);
+    const buffer = await convert(Buffer.from(await image.arrayBuffer()));
 
-  writeFileSync(path, buffer);
+    writeFileSync(path, buffer);
+  }
 
   return { data: id };
 };
