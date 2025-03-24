@@ -1,17 +1,17 @@
-import { asc, eq } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 import { db } from '$lib/server/db';
-import { type User, cardTypes, type CardType } from '$lib/server/db/schema';
+import { cardTypes, type CardType } from '$lib/server/db/schema';
 
-export const load: PageServerLoad = async (event: { locals: { user: User } }) => {
-  if (!event.locals.user) {
+export const load: PageServerLoad = async ({ locals }) => {
+  if (!locals.user) {
     return redirect(302, '/auth/signin');
   }
 
-  if (!event.locals.user.admin) {
+  if (!locals.user.admin) {
     return redirect(302, '/app/cards');
   }
 

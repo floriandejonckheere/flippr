@@ -2,13 +2,11 @@
   import { onMount } from 'svelte';
   import {
     Html5QrcodeScanner,
-    type Html5QrcodeResult,
     Html5QrcodeScanType,
     Html5QrcodeSupportedFormats,
-    Html5QrcodeScannerState
   } from 'html5-qrcode';
 
-  let { scanSuccess, scanFailure, class: klass, width, height, paused = false } = $props();
+  let { scanSuccess, scanFailure, class: klass, width, height } = $props();
 
   let scanner: Html5QrcodeScanner;
   onMount(() => {
@@ -35,14 +33,6 @@
       false
     );
     scanner.render(scanSuccess, scanFailure);
-  });
-
-  let togglePause = $derived.by((paused: boolean) => {
-    if (paused && scanner?.getState() === Html5QrcodeScannerState.SCANNING) {
-      scanner?.pause();
-    } else if (scanner?.getState() === Html5QrcodeScannerState.PAUSED) {
-      scanner?.resume();
-    }
   });
 </script>
 

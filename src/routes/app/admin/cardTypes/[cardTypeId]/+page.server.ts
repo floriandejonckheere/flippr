@@ -5,14 +5,13 @@ import { eq } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
 import { db } from '$lib/server/db';
-import type { User } from '$lib/server/db/schema';
 import { cardTypes } from '$lib/server/db/schema';
 
-export const load: PageServerLoad = async (event: { locals: { user: User } }) => {
+export const load: PageServerLoad = async ({ params }) => {
   const cardType = await db
     .select()
     .from(cardTypes)
-    .where(eq(cardTypes.id, event.params.cardTypeId));
+    .where(eq(cardTypes.id, params.cardTypeId));
 
   if (cardType.length > 0) {
     return {
@@ -44,10 +43,10 @@ export const actions = {
 
     throw redirect(303, '/app/admin/cardTypes');
   },
-  delete: async (event: { locals: { user: User } }) => {
+  delete: async ({ params }) => {
     await db
       .delete(cardTypes)
-      .where(eq(cardTypes.id, event.params.cardTypeId));
+      .where(eq(cardTypes.id, params.cardTypeId));
 
     throw redirect(303, '/app/admin/cardTypes');
   }

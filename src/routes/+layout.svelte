@@ -1,7 +1,7 @@
 <script lang="ts">
   import '../app.css';
 
-  let { children }: { children(): any } = $props();
+  let { children }: { children: () => any } = $props();
 </script>
 
 <div class="flex h-full w-full items-center justify-center bg-red-50 dark:bg-gray-600">

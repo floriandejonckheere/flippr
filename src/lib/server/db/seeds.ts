@@ -161,8 +161,8 @@ const cardData: { [key: string]: { [key: string]: Card } } = {
 };
 
 const main = async () => {
-  // @ts-ignore
-  const client = postgres(process.env.DATABASE_URL);
+  const url = process.env.DATABASE_URL as string;
+  const client = postgres(url);
   const db = drizzle(client);
 
   console.log('Seeding users...');
