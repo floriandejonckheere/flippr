@@ -176,7 +176,7 @@ const main = async () => {
   for (const cardType of Object.values(cardTypesData)) {
     const buffer = await convertBuffer(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
 
-    const path = resolve(modulePath, '../../../../static/uploads', `${cardType.name.toLowerCase()}.webp`);
+    const path = resolve(modulePath, '../../../../static/uploads', `${cardType.id}.webp`);
 
     writeFileSync(path, buffer);
   }
