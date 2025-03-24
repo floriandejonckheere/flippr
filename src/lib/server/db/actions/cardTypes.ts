@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { writeFileSync } from 'fs';
+import { writeFileSync, unlinkSync } from 'fs';
 
 import { asc, eq } from 'drizzle-orm';
 
@@ -96,6 +96,12 @@ export const destroy = async (id: string, user?: User | null) => {
     return { err: { status: 403, message: 'Forbidden' } };
   }
 
+  // Delete the file
+  const modulePath = dirname(fileURLToPath(import.meta.url));
+  const path = resolve(modulePath, '../../../../../static/uploads', `${id}.webp`);
+  unlinkSync(path);
+
+  // Delete card type
   await db
     .delete(cardTypes)
     .where(eq(cardTypes.id, id));
