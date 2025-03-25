@@ -192,9 +192,9 @@ const main = async () => {
         .insert(cards)
         .values(Object.values(cardData[key]));
     }
-
-    console.log('Done!');
   });
+
+  console.log('Done!');
 };
 
 await main();
