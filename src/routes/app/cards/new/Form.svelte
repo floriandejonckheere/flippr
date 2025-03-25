@@ -32,11 +32,11 @@
 
     {#if step === 0}
       <div>
-        <label for="cardTypeId" class="mb-2 block text-sm dark:text-white"> Type </label>
+        <label for="cardTypeId" class="mb-2 block text-sm"> Type </label>
         <select
             id="cardTypeId"
             name="cardTypeId"
-            class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+            class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
             onchange={() => stepTo(1)}
             bind:value={formData.cardType}
             required
@@ -59,7 +59,7 @@
       <div>
         <button
             type="button"
-            class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+            class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50   "
             onclick={() => stepTo(-1)}
         >
           Back
@@ -79,20 +79,20 @@
       </div>
 
       <div>
-        <label for="value" class="mb-2 block text-sm dark:text-white"> Value </label>
+        <label for="value" class="mb-2 block text-sm"> Value </label>
         <input
             type="text"
             id="value"
             name="value"
             bind:value={formData.value}
-            class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+            class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
             required
         />
       </div>
 
       <button
           type="submit"
-          class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+          class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50   "
       >
         Save
       </button>

@@ -14,23 +14,23 @@
     {/if}
 
     <div>
-      <label for="name" class="mb-2 block text-sm dark:text-white"> Name </label>
+      <label for="name" class="mb-2 block text-sm"> Name </label>
       <input
         type="text"
         id="name"
         name="name"
         bind:value={$store.name}
-        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
         required
       />
     </div>
 
     <div>
-      <label for="format" class="mb-2 block text-sm dark:text-white"> Format </label>
+      <label for="format" class="mb-2 block text-sm"> Format </label>
       <select
         id="format"
         name="format"
-        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
         bind:value={$store.format}
         required
       >
@@ -55,25 +55,25 @@
     </div>
 
     <div>
-      <label for="name" class="mb-2 block text-sm dark:text-white"> Background color </label>
+      <label for="name" class="mb-2 block text-sm"> Background color </label>
       <input
         type="text"
         id="backgroundColor"
         name="backgroundColor"
         bind:value={$store.backgroundColor}
-        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
         required
       />
     </div>
 
     <div>
-      <label for="name" class="mb-2 block text-sm dark:text-white"> Text color </label>
+      <label for="name" class="mb-2 block text-sm"> Text color </label>
       <input
         type="text"
         id="textColor"
         name="textColor"
         bind:value={$store.textColor}
-        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400 dark:focus:ring-gray-600"
+        class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
         required
       />
     </div>
@@ -85,14 +85,14 @@
         id="image"
         name="image"
         accept="image/png, image/jpeg, image/svg+xml"
-        class="block w-full text-sm text-slate-500 my-3 file:rounded-lg file:border file:border-transparent file:bg-red-50 file:cursor-pointer file:mr-4 file:px-4 file:py-3 file:text-sm file:text-red-800 file:hover:bg-red-100 file:disabled:pointer-events-none file:disabled:opacity-50 file:dark:focus:outline-none file:dark:focus:ring-1 file:dark:focus:ring-gray-600"
+        class="block w-full text-sm text-slate-500 my-3 file:rounded-lg file:border file:border-transparent file:bg-red-50 file:cursor-pointer file:mr-4 file:px-4 file:py-3 file:text-sm file:text-red-800 file:hover:bg-red-100 file:disabled:pointer-events-none file:disabled:opacity-50 file: file: file: "
       />
-      <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, or JPG (max. 800x400px)</p>
+      <p class="mt-1 text-sm text-gray-500 " id="file_input_help">SVG, PNG, or JPG (max. 800x400px)</p>
     </div>
 
     <button
         type="submit"
-        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50   "
     >
       Save
     </button>
