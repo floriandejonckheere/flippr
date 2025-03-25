@@ -1,4 +1,4 @@
-FROM node:22-alpine AS node
+FROM node:22-alpine AS build
 
 ENV APP_HOME=/app
 WORKDIR $APP_HOME/
@@ -14,7 +14,7 @@ RUN corepack enable && corepack prepare pnpm --activate
 ADD package.json $APP_HOME/
 ADD pnpm-lock.yaml $APP_HOME/
 
-RUN pnpm install
+RUN pnpm install --prod --frozen-lockfile
 
 # Add web application
 ADD . $APP_HOME/
@@ -22,5 +22,16 @@ ADD . $APP_HOME/
 # Build web application
 RUN pnpm build
 
+FROM node:22-alpine AS production
+
+ENV APP_HOME=/app
+WORKDIR $APP_HOME/
+
+# Copy dependencies from build stage
+COPY --from=build $APP_HOME/node_modules $APP_HOME/node_modules
+
+# Copy web application from build stage
+COPY --from=build $APP_HOME/build $APP_HOME/build
+
 # Run web application
-CMD ["pnpm", "run", "dev"]
+CMD ["node", "build"]
