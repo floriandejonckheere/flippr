@@ -14,7 +14,7 @@ import type { User, Card, CardType } from './types';
 import postgres from 'postgres';
 
 import { upload } from './utils';
-import { MockFile } from './mock_file';
+import { MockFile } from './mockFile';
 
 dotenv.config({ path: './.env' });
 
