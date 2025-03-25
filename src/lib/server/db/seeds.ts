@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync } from 'fs';
 
 import { hash } from '@node-rs/argon2';
 
@@ -13,7 +13,8 @@ import { users, cards, cardTypes } from './schema';
 import type { User, Card, CardType } from './types';
 import postgres from 'postgres';
 
-import { convert } from './utils';
+import { upload } from './utils';
+import { MockFile } from './mock_file';
 
 dotenv.config({ path: './.env' });
 
@@ -179,11 +180,11 @@ const main = async () => {
     console.log('Uploading card type images...');
     const modulePath = dirname(fileURLToPath(import.meta.url));
     for (const cardType of Object.values(cardTypesData)) {
-      const buffer = await convert(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
+      const path = resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`);
+      const buffer = readFileSync(path);
+      const file = new MockFile(buffer, `${cardType.name.toLowerCase()}.svg`) as unknown as File;
 
-      const path = resolve(modulePath, '../../../../static/uploads', `${cardType.id}.webp`);
-
-      writeFileSync(path, buffer);
+      upload(cardType.id, file);
     }
 
     console.log('Seeding cards...');

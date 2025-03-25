@@ -1,10 +1,10 @@
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { writeFileSync, unlinkSync } from 'fs';
+import { unlinkSync } from 'fs';
 
 import { asc, eq } from 'drizzle-orm';
 
-import { convert } from '$lib/server/db/utils';
+import { upload } from '$lib/server/db/utils';
 
 import { db } from '$lib/server/db';
 import { cardTypes } from '$lib/server/db/schema';
@@ -56,11 +56,7 @@ export const create = async (data: CreateData, user?: User | null) => {
 
   // Convert uploaded file
   if (image.size !== 0) {
-    const modulePath = dirname(fileURLToPath(import.meta.url));
-    const path = resolve(modulePath, '../../../../../static/uploads', `${id}.webp`);
-    const buffer = await convert(Buffer.from(await image.arrayBuffer()));
-
-    writeFileSync(path, buffer);
+    upload(id, image);
   }
 
   return { data: id };
