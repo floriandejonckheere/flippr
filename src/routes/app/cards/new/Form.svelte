@@ -57,16 +57,6 @@
       />
 
       <div>
-        <button
-            type="button"
-            class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50   "
-            onclick={() => stepTo(-1)}
-        >
-          Back
-        </button>
-      </div>
-
-      <div>
         <QrCodeScanner
             scanSuccess={(e: any) => {
             value = e;
