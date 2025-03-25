@@ -165,28 +165,36 @@ const main = async () => {
   const client = postgres(url);
   const db = drizzle(client);
 
-  console.log('Seeding users...');
-  await db.insert(users).values(Object.values(usersData));
+  await db.transaction(async (tx) => {
+    console.log('Seeding users...');
+    await tx
+      .insert(users)
+      .values(Object.values(usersData));
 
-  console.log('Seeding card types...');
-  await db.insert(cardTypes).values(Object.values(cardTypesData));
+    console.log('Seeding card types...');
+    await tx
+      .insert(cardTypes)
+      .values(Object.values(cardTypesData));
 
-  console.log('Uploading card type images...');
-  const modulePath = dirname(fileURLToPath(import.meta.url));
-  for (const cardType of Object.values(cardTypesData)) {
-    const buffer = await convert(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
+    console.log('Uploading card type images...');
+    const modulePath = dirname(fileURLToPath(import.meta.url));
+    for (const cardType of Object.values(cardTypesData)) {
+      const buffer = await convert(readFileSync(resolve(modulePath, `./seeds/${cardType.name.toLowerCase()}.svg`)));
 
-    const path = resolve(modulePath, '../../../../static/uploads', `${cardType.id}.webp`);
+      const path = resolve(modulePath, '../../../../static/uploads', `${cardType.id}.webp`);
 
-    writeFileSync(path, buffer);
-  }
+      writeFileSync(path, buffer);
+    }
 
-  console.log('Seeding cards...');
-  for (const key of Object.keys(cardData)) {
-    await db.insert(cards).values(Object.values(cardData[key]));
-  }
+    console.log('Seeding cards...');
+    for (const key of Object.keys(cardData)) {
+      await tx
+        .insert(cards)
+        .values(Object.values(cardData[key]));
+    }
 
-  console.log('Done!');
+    console.log('Done!');
+  });
 };
 
 await main();
