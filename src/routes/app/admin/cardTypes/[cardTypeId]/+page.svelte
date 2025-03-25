@@ -13,6 +13,7 @@
   let { form, data }: { form: ActionData; data: any } = $props();
 
   let dataStore = writable({
+    id: data.cardType.id,
     name: data.cardType.name,
     format: data.cardType.format,
     backgroundColor: data.cardType.backgroundColor,
