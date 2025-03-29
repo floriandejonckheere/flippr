@@ -2,8 +2,6 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { readFileSync } from 'fs';
 
-import { hash } from '@node-rs/argon2';
-
 import { drizzle } from 'drizzle-orm/postgres-js';
 import * as dotenv from 'dotenv';
 
@@ -13,21 +11,12 @@ import { users, cards, cardTypes } from './schema';
 import type { User, Card, CardType } from './types';
 import postgres from 'postgres';
 
-import { upload } from './utils';
+import { upload, passwordHash } from './utils';
 import { MockFile } from './mockFile';
 
 dotenv.config({ path: './.env' });
 
 if (!('DATABASE_URL' in process.env)) throw new Error('DATABASE_URL not found in .env');
-
-const passwordHash = async (password: string) => {
-  return await hash(password, {
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
-};
 
 const cardTypesData: { [key: string]: CardType } = {
   delhaize: {

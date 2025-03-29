@@ -17,7 +17,7 @@
     Already have an account?
     <a
       href="/auth/signin"
-      class="font-medium text-red-800 decoration-2 hover:underline    "
+      class="font-medium text-red-800 decoration-2 hover:underline"
     >
       Sign in here
     </a>
@@ -43,7 +43,7 @@
           type="email"
           id="email"
           name="email"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50"
           required
         />
       </div>
@@ -56,7 +56,7 @@
           type="text"
           id="username"
           name="username"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50"
           required
         />
       </div>
@@ -69,7 +69,7 @@
           type="text"
           id="name"
           name="name"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50    "
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50"
           required
         />
       </div>
@@ -80,14 +80,14 @@
           type="password"
           id="password"
           name="password"
-          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-red-800 focus:ring-red-800 disabled:pointer-events-none disabled:opacity-50    "
+          class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-red-800 focus:ring-red-800 disabled:pointer-events-none disabled:opacity-50"
           required
         />
       </div>
 
       <button
         type="submit"
-        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50   "
+        class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-800 px-4 py-3 text-sm font-semibold text-white hover:bg-red-900 disabled:pointer-events-none disabled:opacity-50"
       >
         Sign up
       </button>

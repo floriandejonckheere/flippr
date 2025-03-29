@@ -2,6 +2,8 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { writeFileSync } from 'fs';
 
+import { hash } from '@node-rs/argon2';
+
 import sharp from 'sharp';
 
 export const convert = async (buffer: Buffer, size = 200) => {
@@ -27,4 +29,13 @@ export const upload = async (id: string, file: File) => {
     resolve(modulePath, '../../../../public/uploads', `${id}-thumb.webp`),
     await convert(buffer, 50)
   );
+};
+
+export const passwordHash = async (password: string) => {
+  return await hash(password, {
+    memoryCost: 19456,
+    timeCost: 2,
+    outputLen: 32,
+    parallelism: 1
+  });
 };
