@@ -59,7 +59,7 @@
     <div class="flex h-1/3 items-center text-2xl">
       {#if data.cardAndCardType.cardType.image}
         <img
-          src={`/uploads/${data.cardAndCardType.cardType.id}.webp`}
+          src={`/public/uploads/${data.cardAndCardType.cardType.id}.webp`}
           alt={data.cardAndCardType.cardType.name}
           class="max-h-[2em] max-w-[3em]"
         />
