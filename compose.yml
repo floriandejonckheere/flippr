@@ -25,7 +25,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/flippr_production
     volumes:
-      - upload:/app/static/upload/
+      - uploads:/app/public/uploads/
     depends_on:
       - postgres
     ports:
@@ -33,4 +33,4 @@ services:
 
 volumes:
   postgres:
-  upload:
+  uploads:

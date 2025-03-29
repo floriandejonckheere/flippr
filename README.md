@@ -26,7 +26,7 @@ If you seeded the database, you can log in with `admin`/`password` or `user`/`pa
 
 # Assets
 
-Uploaded images are stored at `static/uploads`.
+Uploaded images are stored at `public/uploads`.
 Serve this directory with a web server to make the images accessible.
 
 # License

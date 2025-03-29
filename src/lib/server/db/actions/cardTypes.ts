@@ -99,7 +99,7 @@ export const destroy = async (id: string, user?: User | null) => {
 
   // Delete the file
   const modulePath = dirname(fileURLToPath(import.meta.url));
-  const path = resolve(modulePath, '../../../../../static/uploads', `${id}.webp`);
+  const path = resolve(modulePath, '../../../../../public/uploads', `${id}.webp`);
   unlinkSync(path);
 
   // Delete card type

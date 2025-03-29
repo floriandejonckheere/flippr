@@ -18,13 +18,13 @@ export const upload = async (id: string, file: File) => {
 
   // Convert and write image to disk
   writeFileSync(
-    resolve(modulePath, '../../../../static/uploads', `${id}.webp`),
+    resolve(modulePath, '../../../../public/uploads', `${id}.webp`),
     await convert(buffer, 200)
   );
 
   // Convert and write thumbnail to disk
   writeFileSync(
-    resolve(modulePath, '../../../../static/uploads', `${id}-thumb.webp`),
+    resolve(modulePath, '../../../../public/uploads', `${id}-thumb.webp`),
     await convert(buffer, 50)
   );
 };

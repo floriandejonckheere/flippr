@@ -12,7 +12,7 @@ export default defineConfig({
     allowedHosts: ['localhost', '127.0.0.1', 'azathoth.local'],
     fs: {
       allow: [
-        './static/uploads',
+        './public/uploads',
         '/root/.vite-plugin-mkcert'
       ]
     }
