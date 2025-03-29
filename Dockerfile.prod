@@ -31,7 +31,15 @@ WORKDIR $APP_HOME/
 COPY --from=build $APP_HOME/node_modules $APP_HOME/node_modules
 
 # Copy web application from build stage
-COPY --from=build $APP_HOME/build $APP_HOME/build
+COPY --from=build $APP_HOME/build $APP_HOME/
+
+# Copy package.json
+COPY --from=build $APP_HOME/package.json $APP_HOME/
+
+# Copy Drizzle configuration, schema, and migrations
+COPY --from=build $APP_HOME/drizzle.config.ts $APP_HOME/
+COPY --from=build $APP_HOME/src/lib/server/db/schema.ts $APP_HOME/src/lib/server/db/schema.ts
+COPY --from=build $APP_HOME/drizzle $APP_HOME/drizzle
 
 # Run web application
-CMD ["node", "build"]
+CMD ["sh", "-c", "npx drizzle-kit push --verbose --force && node ."]
