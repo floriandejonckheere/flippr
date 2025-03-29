@@ -1,7 +1,7 @@
 <script lang="ts">
   import { titleStore } from '$lib/state';
 
-  titleStore.set('Administration');
+  $titleStore = 'Administration';
 </script>
 
 <a href="/app/admin/users">

@@ -3,7 +3,7 @@
   import {Plus} from "@steeze-ui/heroicons";
   import {Icon} from "@steeze-ui/svelte-icon";
 
-  titleStore.set('Card types');
+  $titleStore = 'Card types';
 
   export let data;
 </script>

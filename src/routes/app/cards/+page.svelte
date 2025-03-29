@@ -4,7 +4,7 @@
 
   import { titleStore } from '$lib/state';
 
-  titleStore.set('Cards');
+  $titleStore = 'Cards';
 
   export let data;
 </script>

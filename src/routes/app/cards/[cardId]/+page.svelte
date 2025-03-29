@@ -5,7 +5,7 @@
 
   import { titleStore } from '$lib/state';
 
-  titleStore.set('Card');
+  $titleStore = 'Card';
 
   function confirmDelete(e: any) {
     const confirmed = confirm('Are you sure you want to delete this card?');

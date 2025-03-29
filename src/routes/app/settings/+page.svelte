@@ -3,7 +3,7 @@
 
   import { titleStore } from '$lib/state';
 
-  titleStore.set('Account');
+  $titleStore = 'Account';
 </script>
 
 <form method="post" use:enhance>

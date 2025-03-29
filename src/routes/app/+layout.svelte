@@ -7,7 +7,7 @@
 
   let { children, data }: { children(): any; data: PageServerData } = $props();
 
-  titleStore.set('Flippr');
+  $titleStore = 'Flippr';
 </script>
 
 <div class="scrollbar-hide flex-grow overflow-auto pb-16 md:pb-0">

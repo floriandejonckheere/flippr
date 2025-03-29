@@ -8,7 +8,7 @@
 
   import { titleStore } from '$lib/state';
 
-  titleStore.set('Card type');
+  $titleStore = 'Card type';
 
   let { form, data }: { form: ActionData; data: any } = $props();
 
