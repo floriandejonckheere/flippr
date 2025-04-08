@@ -68,7 +68,18 @@ export const find = async (id: string, user?: User | null) => {
 };
 
 export const destroy = async (id: string, user?: User | null) => {
-  if (!user?.admin) {
+  const card = await db
+    .select()
+    .from(cards)
+    .where(
+      eq(cards.id, id),
+    );
+
+  if (card.length === 0) {
+    return { err: { status: 404, message: 'Not found' } };
+  }
+
+  if (!user?.admin && card[0]?.userId !== user?.id) {
     return { err: { status: 403, message: 'Forbidden' } };
   }
 
