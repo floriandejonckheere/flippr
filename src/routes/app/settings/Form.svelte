@@ -5,13 +5,19 @@
   let { form, store, action }: { form: ActionData, store: any, action: string } = $props();
 </script>
 
-<form method="POST" action={action} enctype="multipart/form-data" use:enhance>
+<form method="POST" action="?/update" enctype="multipart/form-data" use:enhance>
   <div class="grid gap-y-4">
     {#if form?.message}
       <p class="text-sm font-bold text-red-600">
         Error: {form.message}
       </p>
     {/if}
+
+    <input
+      type="hidden"
+      name="id"
+      value={$store.id}
+    />
 
     <div>
       <label for="name" class="mb-2 block text-sm"> Name </label>
@@ -32,7 +38,6 @@
         id="password"
         name="password"
         class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50"
-        required
       />
     </div>
 
@@ -44,7 +49,6 @@
         id="passwordConfirmation"
         name="passwordConfirmation"
         class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-sky-700 focus:ring-sky-700 disabled:pointer-events-none disabled:opacity-50"
-        required
       />
     </div>
 

@@ -1,4 +1,4 @@
-import {error, fail, redirect} from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 import * as auth from '$lib/server/auth';
@@ -18,9 +18,16 @@ export const actions: Actions = {
   update: async ({ locals, params, request }) => {
     const data = await request.formData();
 
+    const id = data.get('id') as string;
     const name = data.get('name') as string;
     const password = data.get('password') as string;
     const passwordConfirmation = data.get('passwordConfirmation') as string;
+
+    if (password !== '' && password.length < 6) {
+      return fail(400, {
+        message: 'Password must be at least 6 characters long',
+      });
+    }
 
     if (password !== passwordConfirmation) {
       return fail(400, {
@@ -33,12 +40,12 @@ export const actions: Actions = {
       password,
     }
 
-    const { err } = await update(params.id, userData, locals.user);
+    const { err } = await update(id, userData, locals.user);
 
     if (err) {
       throw error(err.status, err.message);
     }
 
-    throw redirect(303, '/app');
+    throw redirect(303, '/app/cards');
   }
 };

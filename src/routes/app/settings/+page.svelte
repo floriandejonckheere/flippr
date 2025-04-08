@@ -27,5 +27,9 @@
 />
 
 <form method="POST" action="?/signout" use:enhance>
-  <button class="w-full rounded-lg bg-red-800 p-4 text-center text-white shadow-md"> Sign out </button>
+  <button
+    class="mt-4 inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-red-50 px-4 py-3 text-sm text-red-800 hover:bg-red-100 disabled:pointer-events-none disabled:opacity-50   transition-all"
+  >
+    Sign out
+  </button>
 </form>
